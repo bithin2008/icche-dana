@@ -1,0 +1,47 @@
+<ion-content>
+  <div class="mainContent">
+    <div class="logo">
+      <img src="assets/icon.png" alt="" class="logoIcon">
+    </div>
+    <div class="loginDetails">
+      <h3 class="signInText">Password assistance</h3>
+      <p class="desc">Enter the email address or mobile phone number <br>
+        associated with your ionPrime account</p>
+      <div class="accountInput">
+        <ion-item class="ion-no-margin ion-no-padding" lines="none" class="emailInput" [class.focus]="type=='email'">
+          <ion-input class="inputTxt" placeholder="Your Email or mobile number" (ionFocus)="focus('email')">
+          </ion-input>
+        </ion-item>
+        <ion-button (click)="reset()" expand="block" color="warning" class="loginBtn">
+          Continue
+        </ion-button>
+        <div class="terms">
+          <h3 class="titleHelp">Has your email or mobile number changed ?</h3>
+          <ion-label class="lbl_police"><span class="span_term">If you no longer use the email or mobile number
+              associated with your ionPrime account, you may contact </span>
+            <u> <a href="https://google.com">Customer service</a> </u> for help restoring access to your account.
+          </ion-label>
+        </div>
+      </div>
+
+
+    </div>
+    <div class="footerLink">
+      <div class="linkCondition">
+        <a href="https://google.com">Conditions of Use</a>
+      </div>
+      <div class="linkCondition">
+        <a href="https://google.com">Privacy Notice</a>
+      </div>
+      <div class="linkCondition">
+        <a href="https://google.com">Help</a>
+      </div>
+    </div>
+    <div class="footerCopyright">
+      <p class="copytext">
+        &copy;2019 -2020, ionPrime ,Inc. or it's affiliate
+      </p>
+    </div>
+
+  </div>
+</ion-content>

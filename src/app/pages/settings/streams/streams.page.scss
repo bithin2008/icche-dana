@@ -1,0 +1,37 @@
+ion-content{
+    --background: black;
+}
+
+.mainContent{
+    padding: 15px;
+    .backBtnSection{
+        position: absolute;
+        top: 30px;
+        .backBtn{
+            width: 25px;        
+        }
+    }
+   
+    .title{
+        text-align: center;
+        font-size: 1.2rem;
+        color: lightgray;
+        font-weight: bold;
+    }
+    .customList{
+        ion-item{
+            --background: black;
+            color: lightgray;
+            border-bottom: 1px solid lightgray;
+            margin-top: 15px;
+        }
+        .header{
+            color: lightgray;
+        }
+        .subTitle{
+            color: lightgray;
+        }
+        
+    }
+    
+}

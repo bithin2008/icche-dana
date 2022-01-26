@@ -1,0 +1,222 @@
+<ion-content>
+  <div class="mainContent">
+    <h3 class="title">ionPrime</h3>
+    <div class="backBtnSection" (click)="back()">
+      <img src="assets/back.png" alt="" class="backBtn">
+    </div>
+    <div class="contentSection">
+      <div class="backImage back_img" [style.backgroundImage]="'url(assets/sliders/2.jpg)'"></div>
+      <div class="mainDetails">
+        <h3 class="movieTitle">Lorem impus</h3>
+        <ion-item lines="none">
+          <ion-select value="1" placeholder="Season 1" interface="popover">
+            <ion-select-option value="1">Season 1 </ion-select-option>
+            <ion-select-option value="2">Season 2 </ion-select-option>
+            <ion-select-option value="3">Season 3 </ion-select-option>
+          </ion-select>
+        </ion-item>
+        <p class="purchase">You can watch Episode 1 Free</p>
+        <ion-button (click)="onPurchase()" expand="block" color="primary">
+          <p class="btnText">Episode 1
+            <br><span class="btnSubTitle">Watch Now for Free</span>
+          </p>
+        </ion-button>
+        <p class="primeContent">ionPrime</p>
+        <p class="purchase">Watch for $0.00 with ionPrime</p>
+        <ion-button (click)="onPurchase()" expand="block" color="warning">
+          <p class="btnText">Watch with Prime
+            <br><span class="btnSubTitle">Start your 30-day free trial</span>
+          </p>
+        </ion-button>
+        <ion-grid fixed>
+          <ion-row class="ion-text-center">
+            <ion-col size="1.5">
+
+            </ion-col>
+            <ion-col size="3">
+              <img src="assets/play.png" class="actionBtn" alt="">
+              <p class="actionTitle">Trailer</p>
+            </ion-col>
+            <ion-col size="3">
+              <img src="assets/add.png" class="actionBtn" alt="">
+              <p class="actionTitle">Wishlist</p>
+            </ion-col>
+            <ion-col size="3">
+              <img src="assets/share.png" class="actionBtn" alt="">
+              <p class="actionTitle">Share</p>
+            </ion-col>
+            <ion-col size="1.5">
+
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+        <p class="descrition">
+          Lorem Ipsum is simply dummy text of the printing and typesetting industry
+          text of the printing and typesetting industry
+        </p>
+        <p class="imdb">IMDB 7.5</p>
+        <p class="timeAndDuration">2019 103 min</p>
+      </div>
+    </div>
+    <div class="segments">
+      <ion-segment [(ngModel)]="feature" (ionChange)="segmentChanged($event)">
+        <ion-segment-button value="Related" mode="md">
+          <ion-label>Episodes(4)</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="More" mode="md">
+          <ion-label>More Details</ion-label>
+        </ion-segment-button>
+      </ion-segment>
+    </div>
+    <div class="relatedSection" *ngIf="feature =='Related'">
+      <ion-list lines="none">
+        <ion-item (click)="activeEpisode = 1">
+          <ion-avatar slot="start">
+            <img src="assets/play.png" />
+          </ion-avatar>
+          <ion-label>Episode 1 <br>
+            <p class="subtitle">Lorem Impus</p>
+          </ion-label>
+        </ion-item>
+        <div *ngIf="activeEpisode == 1">
+          <div class="activeEpisode back_img" [style.backgroundImage]="'url(assets/sliders/1.jpg)'"></div>
+          <p class="descrition">
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry
+            text of the printing and typesetting industry
+          </p>
+          <p class="imdb">IMDB 7.5</p>
+          <p class="timeAndDuration">2019 103 min</p>
+        </div>
+        <ion-item (click)="activeEpisode = 2">
+          <ion-label>Episode 2 <br>
+            <p class="subtitle">Lorem Impus</p>
+          </ion-label>
+        </ion-item>
+        <div *ngIf="activeEpisode == 2">
+          <div class="activeEpisode back_img" [style.backgroundImage]="'url(assets/sliders/1.jpg)'"></div>
+          <p class="descrition">
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry
+            text of the printing and typesetting industry
+          </p>
+          <p class="imdb">IMDB 7.5</p>
+          <p class="timeAndDuration">2019 103 min</p>
+        </div>
+        <ion-item (click)="activeEpisode = 3">
+          <ion-label>Episode 3 <br>
+            <p class="subtitle">Lorem Impus</p>
+          </ion-label>
+        </ion-item>
+        <div *ngIf="activeEpisode == 3">
+          <div class="activeEpisode back_img" [style.backgroundImage]="'url(assets/sliders/1.jpg)'"></div>
+          <p class="descrition">
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry
+            text of the printing and typesetting industry
+          </p>
+          <p class="imdb">IMDB 7.5</p>
+          <p class="timeAndDuration">2019 103 min</p>
+        </div>
+        <ion-item (click)="activeEpisode = 4">
+          <ion-label>Episode 4 <br>
+            <p class="subtitle">Lorem Impus</p>
+          </ion-label>
+        </ion-item>
+        <div *ngIf="activeEpisode == 4">
+          <div class="activeEpisode back_img" [style.backgroundImage]="'url(assets/sliders/1.jpg)'"></div>
+          <p class="descrition">
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry
+            text of the printing and typesetting industry
+          </p>
+          <p class="imdb">IMDB 7.5</p>
+          <p class="timeAndDuration">2019 103 min</p>
+        </div>
+      </ion-list>
+      <div class="featureType">
+        <h2 class="title">Customers also watched</h2>
+        <ion-slides mode="ios" [options]="slideOptsType">
+          <ion-slide (click)="details()">
+            <div class="sliderType back_img" [style.backgroundImage]="'url(assets/sliders/1.jpg)'"></div>
+          </ion-slide>
+          <ion-slide (click)="details()">
+            <div class="sliderType back_img" [style.backgroundImage]="'url(assets/sliders/2.jpg)'"></div>
+          </ion-slide>
+          <ion-slide (click)="details()">
+            <div class="sliderType back_img" [style.backgroundImage]="'url(assets/sliders/3.jpeg)'"></div>
+          </ion-slide>
+        </ion-slides>
+      </div>
+      <h2 class="cast">Cast & Crew</h2>
+      <ion-grid class="ion-no-margin ion-no-padding">
+        <ion-row class="ion-no-margin ion-no-padding">
+          <ion-col size="4" *ngFor="let item of list;let i= index">
+            <ion-card class="ion-no-margin" background-size id='main_img' (click)="actorProfile()"
+              [style.backgroundImage]="'url('+item.imgs+')'">
+              <p class="username">{{item.username}}</p>
+            </ion-card>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      <ion-grid fixed>
+        <ion-row>
+          <ion-col size="4">
+            <ion-card class="ion-no-margin" background-size id='main_img'
+              [style.backgroundImage]="'url(assets/grids/u8.jpg)'">
+              <p class="username">John Doe</p>
+            </ion-card>
+          </ion-col>
+          <ion-col size="8">
+            <h2 class="directTitle">Director</h2>
+            <p class="directSubtitle ion-text-wrap">lorem impus a simple text with simple text lorem impus</p>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+    <div class="moreDetails" *ngIf="feature =='More'">
+      <ion-item lines="none">
+        <ion-label class="header">Genres<br>
+          <p class="subTitle">Drama, Action, Suspense</p>
+        </ion-label>
+      </ion-item>
+      <ion-item lines="none">
+        <ion-label class="header">Directions<br>
+          <p class="subTitle">John Doe</p>
+        </ion-label>
+      </ion-item>
+      <ion-item lines="none">
+        <ion-label class="header">Staring<br>
+          <p class="subTitle">Shahrukh Khan, Katrina kaif</p>
+        </ion-label>
+      </ion-item>
+      <ion-item lines="none">
+        <ion-label class="header">Supporting Actors<br>
+          <p class="subTitle ion-text-wrap">Shahrukh Khan, Katrina kaif,Shahrukh Khan, Katrina kaif,Shahrukh Khan,
+            Katrina kaif</p>
+        </ion-label>
+      </ion-item>
+      <ion-item lines="none">
+        <ion-label class="header">Audio Language<br>
+          <p class="subTitle">English, Hindi</p>
+        </ion-label>
+      </ion-item>
+      <ion-item lines="none">
+        <ion-label class="header">Subtitles<br>
+          <p class="subTitle">English [CC]</p>
+        </ion-label>
+      </ion-item>
+      <ion-item lines="none">
+        <ion-label class="header">Studios<br>
+          <p class="subTitle">yashraj</p>
+        </ion-label>
+      </ion-item>
+      <ion-item lines="none">
+        <ion-label class="header">ionPrime Maturity Rating<br>
+          <p class="subTitle">13+</p>
+        </ion-label>
+      </ion-item>
+      <ion-item lines="none">
+        <ion-label class="header">Viewing rights<br>
+          <p class="subTitle">lorem impus a simple text</p>
+        </ion-label>
+      </ion-item>
+    </div>
+  </div>
+</ion-content>

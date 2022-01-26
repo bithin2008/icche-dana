@@ -1,0 +1,56 @@
+<ion-content>
+  <div class="mainContent">
+    <h3 class="title">Language</h3>
+    <div class="backBtnSection" (click)="back()">
+      <img src="assets/back.png" alt="" class="backBtn">
+    </div>
+    <div class="customList">
+      <ion-radio-group [(ngModel)]="lang">
+        <ion-item lines="none">
+          <ion-label class="header">Deutsch
+          </ion-label>
+          <ion-radio value="Deutsch" mode="md" slot="start" color="warning"></ion-radio>
+        </ion-item>
+
+        <ion-item lines="none">
+          <ion-label class="header">English
+          </ion-label>
+          <ion-radio value="English" mode="md" slot="start" color="warning"></ion-radio>
+        </ion-item>
+
+        <ion-item lines="none">
+          <ion-label class="header">Espanol
+          </ion-label>
+          <ion-radio value="Espanol" mode="md" slot="start" color="warning"></ion-radio>
+        </ion-item>
+
+        <ion-item lines="none">
+          <ion-label class="header">Italiano
+          </ion-label>
+          <ion-radio value="Italiano" mode="md" slot="start" color="warning"></ion-radio>
+        </ion-item>
+
+        <ion-item lines="none">
+          <ion-label class="header">Netherlands
+          </ion-label>
+          <ion-radio value="Netherlands" mode="md" slot="start" color="warning"></ion-radio>
+        </ion-item>
+
+        <ion-item lines="none">
+          <ion-label class="header">Portugues
+          </ion-label>
+          <ion-radio value="Portugues" mode="md" slot="start" color="warning"></ion-radio>
+        </ion-item>
+
+        <ion-item lines="none">
+          <ion-label class="header">हिंदी
+          </ion-label>
+          <ion-radio value="hindi" mode="md" slot="start" color="warning"></ion-radio>
+        </ion-item>
+
+
+      </ion-radio-group>
+
+    </div>
+  </div>
+</ion-content>

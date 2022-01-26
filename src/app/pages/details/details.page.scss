@@ -1,0 +1,181 @@
+ion-content{
+    --background: black;
+}
+ion-segment-button{
+    background: black;
+    color: lightgray;
+}
+ion-item{
+    --background: black;
+    color: lightgray;
+    border-bottom: 1px solid lightgray;
+    margin-top: 15px;
+}
+.mainContent{
+    padding-top: 40px;
+    .backBtnSection{
+        position: absolute;
+        top: 40px;
+        padding: 0px 15px;
+        .backBtn{
+            width: 25px;        
+        }
+    }
+   
+    .title{
+        text-align: center;
+        font-size: 1.2rem;
+        color: lightgray;
+        font-weight: bold;
+    }
+    .contentSection{
+        .backImage{
+            height: 200px;
+            width: 100%;
+        }   
+        .mainDetails{
+            padding: 15px;
+            .movieTitle{
+                color: white;
+                font-weight: bolder;
+            }
+            .primeContent{
+                color: #6399D8;
+                font-weight: bolder;
+            }
+            .purchase{
+                text-align: center;
+                color:lightgray;
+            }
+            .btnText{
+                color: black;
+                font-size: 1rem;
+                .btnSubTitle{
+                    font-size: 0.8rem;
+                }
+            }
+            .actionBtn{
+                width: 30px;
+            }
+            .actionTitle{
+                color: lightgray;
+                margin: 0px;
+            }
+            .descrition{
+                color: lightgray;
+                margin: 0px;
+            }
+            .imdb{
+                color: lightgray;
+                margin: 5px 0px;
+                font-weight: bolder;
+            }
+            .timeAndDuration{
+                color: lightgray;
+                margin: 0px;
+                font-weight: bolder;
+            }
+        }
+    }
+     .featureType{
+        padding:0px 15px;
+        .title{
+            color: white;
+            font-size: 1rem;
+            font-weight: bolder;
+            text-align: left;
+        }
+        .moreType{
+            display: flex;
+            flex-direction: row;
+            .moreTitle{
+                color: white;
+                font-size: 1rem;
+                font-weight: bolder;
+            }
+            .nextImg{
+                width: 15px;
+                height: 15px;
+                margin-top: 20px;
+                margin-left: 10px;
+            }
+        }
+         .sliderType{
+            height: 100px;
+            border-radius: 5px;
+            width: 100%;
+            margin-right: 10px;
+        }
+        .langName{
+            position: absolute;
+            bottom: -20px;
+            color: #6399D8;
+            font-weight: bolder;
+            font-size: 0.8rem;
+            padding: 10px;
+        }
+        .sliderTypeFull{
+            height: 130px;
+            border-radius: 5px;
+            width: 100%;
+            margin-right: 10px;
+        }
+        .sliderLang{
+            height: 130px;
+            border-radius: 5px;
+            width: 100%;
+            margin-right: 10px;
+        }
+    }
+    .cast{
+        font-size: 1rem;
+        color: white;
+        text-align: left;
+        font-weight: bolder;
+        padding:0px 15px;
+    }
+    ion-card {
+        position: relative;
+        height: 150px;
+        width: 100% !important;
+        border-radius: unset;
+    }
+
+    #main_img {
+        background-size: cover;
+        left: 50%;
+        background-position: center;
+        transform: translateX(-50%);
+        box-shadow: 0 0 18px rgba(0, 0, 0, 0.3);
+    }
+
+    .username{
+        font-size: 9pt;
+        text-align: center;
+        font-weight: bold;
+        color: black;
+        position: absolute;
+        bottom: 0px;
+        background: #ffce00;
+        border-radius: 5px;
+        padding: 5px;
+    }
+    .directTitle{
+        color: white;
+        font-size: 1.2rem;
+        font-weight: bolder;
+    }
+    .directSubtitle{
+        color: white;
+        font-size: 1rem;
+        
+    }
+    .moreDetails{
+         .header{
+            color: lightgray;
+        }
+        .subTitle{
+            color: lightgray;
+        }
+    }
+}

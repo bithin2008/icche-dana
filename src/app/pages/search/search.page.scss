@@ -1,0 +1,26 @@
+ion-content{
+    --background: black;
+}
+ion-header{
+    background-color: black;
+    .logo{
+        text-align: center;
+        padding-top: 40px;
+        .title{
+            color: white;
+            font-weight: bolder;
+        }
+    }
+}
+.searchbar-input-container{
+    background: white !important;
+}
+ion-searchbar{
+    --background:white;	
+}
+.suggestedname{
+    color: lightgray;
+}
+ion-item{
+    --background:black;	   
+}

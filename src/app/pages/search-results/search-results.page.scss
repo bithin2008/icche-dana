@@ -1,0 +1,56 @@
+ion-header{
+    --background: black;
+}
+ion-toolbar{
+    --background: black;
+}
+ion-title{
+    color: white;
+}
+ion-content{
+    --background: black;
+}
+.mainContent{
+    .headerBtn{
+        display: flex;
+        justify-content: space-between;
+        padding: 0px 10px;
+        .totalVideos{
+            color: white;
+        }
+        .filtrBtn{
+            margin-top: 10px;
+        }
+    }
+    .mainRow{
+        margin-top: 10px;
+    }
+    .backImage{
+        height: 100px;
+        width: 100%;
+    }  
+    .bgColor{
+        background-color: #44444399;
+        padding: 2px 10px;
+    }
+    .movieTitle{
+        color: white;
+        font-size: 1rem;
+        font-weight: bolder;
+        margin: 0px;
+    } 
+    .movieDesc{
+        color: white;
+        margin: 0px;
+    }
+    .tag{
+        color: var(--ion-color-primary);;
+        margin: 0px;
+    }
+    .moreIcon{
+        position: absolute;
+        width: 20px;
+        bottom: 20px;
+        right: 10px;
+    }
+}

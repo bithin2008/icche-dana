@@ -1,0 +1,37 @@
+<ion-content>
+  <div class="mainContent">
+    <h3 class="title">Contact Us</h3>
+    <div class="backBtnSection" (click)="back()">
+      <img src="assets/back.png" alt="" class="backBtn">
+    </div>
+    <div class="customList">
+      <h3 class="titleOf" *ngIf="hide">Manage Your Prime Video Experience</h3>
+      <h3 class="titleOf" *ngIf="!hide">Manage Your Prime Video Experience - Data, PIN, & Subtitle - Managing Mobile
+        Data</h3>
+      <p class="subTitle" *ngIf="!hide">
+        Lorem Ipsum is simply dummy text of the printing and typesetting industry
+        text of the printing and typesetting industry
+      </p>
+      <p class="subTitle" *ngIf="!hide">
+        Lorem Ipsum is simply dummy text of the printing and typesetting industry
+      </p>
+      <ion-button *ngIf="!hide" (click)="phone()" expand="block" color="warning">
+        Phone
+      </ion-button>
+      <div *ngIf="hide">
+        <ion-item detail lines="none" (click)="calling()">
+          <ion-label>Data, PIN, & Subtitle</ion-label>
+        </ion-item>
+        <ion-item detail lines="none" (click)="calling()">
+          <ion-label>Watching Videos</ion-label>
+        </ion-item>
+        <ion-item detail lines="none" (click)="calling()">
+          <ion-label>Purchasing & Downloading Videos</ion-label>
+        </ion-item>
+        <ion-item detail lines="none" (click)="calling()">
+          <ion-label>Others</ion-label>
+        </ion-item>
+      </div>
+    </div>
+  </div>
+</ion-content>

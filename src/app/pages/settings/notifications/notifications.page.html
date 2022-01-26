@@ -1,0 +1,37 @@
+<ion-content>
+  <div class="mainContent">
+    <h3 class="title">Stream & Download</h3>
+    <div class="backBtnSection" (click)="back()">
+      <img src="assets/back.png" alt="" class="backBtn">
+    </div>
+    <div class="customList">
+      <h3 class="mainTitle"> Receive notifications about TV shows and moviews you love. <br>
+        You can easily customize all your notifiction settings below.</h3>
+      <ion-item lines="none">
+        <ion-label class="header">Downloads
+        </ion-label>
+        <ion-toggle [(ngModel)]="download" slot="end" color="warning"></ion-toggle>
+      </ion-item>
+      <ion-item lines="none">
+        <ion-label class="header">Your watchlist & Library
+        </ion-label>
+        <ion-toggle [(ngModel)]="watchlist" slot="end" color="warning"></ion-toggle>
+      </ion-item>
+      <ion-item lines="none">
+        <ion-label class="header">Recommanded for you
+        </ion-label>
+        <ion-toggle [(ngModel)]="forYou" slot="end" color="warning"></ion-toggle>
+      </ion-item>
+      <ion-item lines="none">
+        <ion-label class="header">New app features
+        </ion-label>
+        <ion-toggle [(ngModel)]="features" slot="end" color="warning"></ion-toggle>
+      </ion-item>
+      <ion-item lines="none">
+        <ion-label class="header">Speacial offers
+        </ion-label>
+        <ion-toggle [(ngModel)]="offers" slot="end" color="warning"></ion-toggle>
+      </ion-item>
+    </div>
+  </div>
+</ion-content>

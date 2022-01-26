@@ -1,0 +1,40 @@
+<ion-header>
+    <div class="logo">
+        <p class="title">Wishlist</p>
+    </div>
+
+</ion-header>
+<ion-content>
+    <div class="mainContent">
+        <div class="headerBtn">
+            <p class="totalVideos">2 Videos </p>
+            <ion-button (click)="filter()" class="filtrBtn" slot="end" size="small" color="light">
+                Filter
+            </ion-button>
+        </div>
+        <ion-grid class="ion-no-margin ion-no-padding">
+            <ion-row class="ion-no-margin ion-no-padding mainRow">
+                <ion-col size="6" class="ion-no-margin ion-no-padding" (click)="details()">
+                    <div class="backImage back_img" [style.backgroundImage]="'url(assets/sliders/2.jpg)'"></div>
+                </ion-col>
+                <ion-col size="6" class="ion-no-margin ion-no-padding bgColor">
+                    <h3 class="movieTitle" (click)="details()">The Angry Birds Movie 2</h3>
+                    <p class="movieDesc" (click)="details()">2019 98 min</p>
+                    <p class="tag" (click)="details()">ionPrime</p>
+                    <img src="assets/more.png" class="moreIcon" alt="" (click)="moreIcon()">
+                </ion-col>
+            </ion-row>
+            <ion-row class="ion-no-margin ion-no-padding mainRow">
+                <ion-col size="6" class="ion-no-margin ion-no-padding">
+                    <div class="backImage back_img" [style.backgroundImage]="'url(assets/sliders/2.jpg)'"></div>
+                </ion-col>
+                <ion-col size="6" class="ion-no-margin ion-no-padding bgColor">
+                    <h3 class="movieTitle">The Angry Birds Movie 2</h3>
+                    <p class="movieDesc">2019 98 min</p>
+                    <p class="tag">ionPrime</p>
+                    <img src="assets/more.png" class="moreIcon" alt="" (click)="moreIcon()">
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </div>
+</ion-content>

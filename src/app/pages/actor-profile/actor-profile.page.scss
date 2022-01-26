@@ -1,0 +1,81 @@
+ion-content{
+    --background: black;
+}
+ion-segment-button{
+    background: black;
+    color: lightgray;
+}
+ion-item{
+    --background: black;
+    color: lightgray;
+    border-bottom: 1px solid lightgray;
+    margin-top: 15px;
+}
+.mainContent{
+    padding-top: 40px;
+    .backBtnSection{
+        position: absolute;
+        top: 40px;
+        padding: 0px 15px;
+        .backBtn{
+            width: 25px;        
+        }
+    }
+   
+    .title{
+        text-align: center;
+        font-size: 1.2rem;
+        color: lightgray;
+        font-weight: bold;
+    }
+    .contentSection{
+        .backImage{
+            height: 200px;
+            width: 100%;
+        }   
+        .mainDetails{
+            padding: 15px;
+            .movieTitle{
+                color: white;
+                font-weight: bolder;
+            }
+            .primeContent{
+                color: #6399D8;
+                font-weight: bolder;
+            }
+            .purchase{
+                text-align: center;
+                color:lightgray;
+            }
+            .btnText{
+                color: black;
+                font-size: 1rem;
+                .btnSubTitle{
+                    font-size: 0.8rem;
+                }
+            }
+            .actionBtn{
+                width: 30px;
+            }
+            .actionTitle{
+                color: lightgray;
+                margin: 0px;
+            }
+            .descrition{
+                color: lightgray;
+                margin: 0px;
+            }
+            .imdb{
+                color: lightgray;
+                margin: 5px 0px;
+                font-weight: bolder;
+            }
+            .timeAndDuration{
+                color: lightgray;
+                margin: 0px;
+                font-weight: bolder;
+            }
+        }
+    }
+   
+}

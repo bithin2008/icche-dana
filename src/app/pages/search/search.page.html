@@ -1,0 +1,22 @@
+<ion-header>
+    <div class="logo">
+        <p class="title">Search</p>
+    </div>
+</ion-header>
+<ion-content>
+    <div class="mainContent">
+        <ion-searchbar placeholder="Actor, title, or genre" (ionChange)="onSearchChange($event)" [debounce]="250">
+        </ion-searchbar>
+        <div *ngIf="hide">
+            <ion-item lines="none" (click)="details()">
+                <ion-label class="suggestedname">mirzapur</ion-label>
+            </ion-item>
+            <ion-item lines="none" (click)="details()">
+                <ion-label class="suggestedname">kgf</ion-label>
+            </ion-item>
+            <ion-item lines="none" (click)="details()">
+                <ion-label class="suggestedname">kgf chapter 2</ion-label>
+            </ion-item>
+        </div>
+    </div>
+</ion-content>

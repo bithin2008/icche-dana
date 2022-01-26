@@ -1,0 +1,87 @@
+ion-content{
+    --background: black;
+}
+.mainContent{
+    background-color: black;
+    padding: 15px;
+    .logo{
+        text-align: center;
+        .logoIcon{
+            width: 80px;
+        }
+    }
+    .loginDetails{
+        .signInText{
+            font-weight: bold;
+            color: white;
+        }
+        .frg{
+            position: absolute;
+            right: 15px;
+        }
+        .accountInput{
+            margin-top: 20px;
+            .inputTxt{
+                padding-left: 5px !important;
+            }
+            .emailInput{
+                border: 1px solid lightgray;
+                margin: 10px 0px ;
+            }
+            .pwdInput{
+                border: 1px solid lightgray;
+                margin: 10px 0px ;
+            }
+            .focus{
+               border:2px solid #f6ae0a;
+               z-index: 99999;
+            }
+            .pwdCheck{
+                --background: transparent;
+            }
+            .loginBtn{
+                margin-top: 40px;
+            }
+            ion-item{
+                --background: #f9fcff2b;
+                color: lightgray;
+                // border: 1px solid lightgray;
+            }
+        }
+        .terms{
+            margin-top: 20px;
+            text-align: center;
+            .lbl_police{
+                font-size: 15px;
+                color: white;
+            }
+        }
+        .center {
+            width: 100%;
+            height: 100%;
+        }
+        .newUser{
+            color:#F8F8F8;;
+        }
+        .seperator {
+            margin-top: 25px;
+            height: 1px;
+            background-color: #F8F8F8;
+            width: 100%;
+        }
+    }
+    .footerLink{
+        display: flex;
+        justify-content: space-evenly;
+        margin-top: 48px;
+        .linkCondition{
+            font-size: 1rem;
+        }
+    }
+    .footerCopyright{
+        text-align: center;
+        .copytext{
+            color:#F8F8F8;;
+        }
+    }
+}

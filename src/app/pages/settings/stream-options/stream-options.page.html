@@ -1,0 +1,44 @@
+<ion-content>
+  <div class="mainContent">
+    <h3 class="title">Streaming Quality</h3>
+    <div class="backBtnSection" (click)="back()">
+      <img src="assets/back.png" alt="" class="backBtn">
+    </div>
+    <div class="customList">
+      <ion-radio-group [(ngModel)]="quality">
+        <ion-item lines="none">
+          <ion-label class="header">Best <br>
+            <p class="subTitle">1 hour uses about 0.46 GB of data</p>
+          </ion-label>
+          <ion-radio value="best" mode="md" slot="start" color="warning"></ion-radio>
+        </ion-item>
+
+        <ion-item lines="none">
+          <ion-label class="header">Better <br>
+            <p class="subTitle">1 hour uses about 0.46 GB of data</p>
+          </ion-label>
+          <ion-radio value="better" mode="md" slot="start" color="warning"></ion-radio>
+        </ion-item>
+
+        <ion-item lines="none">
+          <ion-label class="header">Good <br>
+            <p class="subTitle">1 hour uses about 0.46 GB of data</p>
+          </ion-label>
+          <ion-radio value="good" mode="md" slot="start" color="warning"></ion-radio>
+        </ion-item>
+
+        <ion-item lines="none">
+          <ion-label class="header">Data Save <br>
+            <p class="subTitle">1 hour uses about 0.46 GB of data</p>
+          </ion-label>
+          <ion-radio value="saver" mode="md" slot="start" color="warning"></ion-radio>
+        </ion-item>
+      </ion-radio-group>
+      <ion-item lines="none">
+        <ion-label class="header" class="ion-text-wrap">Use highest quality when on Wi-Fi
+        </ion-label>
+        <ion-toggle [(ngModel)]="highest" slot="end" color="warning"></ion-toggle>
+      </ion-item>
+    </div>
+  </div>
+</ion-content>

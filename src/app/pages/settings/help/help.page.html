@@ -1,0 +1,17 @@
+<ion-content>
+  <div class="mainContent">
+    <h3 class="title">Help</h3>
+    <div class="backBtnSection" (click)="back()">
+      <img src="assets/back.png" alt="" class="backBtn">
+    </div>
+    <div class="customList">
+      <ion-item lines="none" *ngFor="let item of [1,2,3,4,5,6,7,8,9,10]">
+        <ion-label class="titleOf">Lorem Ipsum <br>
+          <p class="subTitle" text-wrap>
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry </p>
+        </ion-label>
+      </ion-item>
+
+    </div>
+  </div>
+</ion-content>

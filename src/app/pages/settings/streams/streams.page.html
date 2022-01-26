@@ -1,0 +1,35 @@
+<ion-content>
+  <div class="mainContent">
+    <h3 class="title">Stream & Download</h3>
+    <div class="backBtnSection" (click)="back()">
+      <img src="assets/back.png" alt="" class="backBtn">
+    </div>
+    <div class="customList">
+      <ion-item lines="none" (click)="streamOptions('stream')">
+        <ion-label class="header">Stream Quality <br>
+          <p class="subTitle">Good; Use highest quality when on Wi-Fi</p>
+        </ion-label>
+      </ion-item>
+      <ion-item lines="none" (click)="streamOptions('quality')">
+        <ion-label class="header">Download Quality<br>
+          <p class="subTitle">Always Ask</p>
+        </ion-label>
+      </ion-item>
+      <ion-item lines="none">
+        <ion-label class="header">Download on Wi-Fi Only
+        </ion-label>
+        <ion-toggle [(ngModel)]="download" slot="end" color="warning"></ion-toggle>
+      </ion-item>
+      <ion-item lines="none">
+        <ion-label class="header">Stream on Wi-Fi Only
+        </ion-label>
+        <ion-toggle [(ngModel)]="stream" slot="end" color="warning"></ion-toggle>
+      </ion-item>
+      <ion-item lines="none">
+        <ion-label class="header">Notify when Streaming on Mobile Data
+        </ion-label>
+        <ion-toggle [(ngModel)]="mobileData" slot="end" color="warning"></ion-toggle>
+      </ion-item>
+    </div>
+  </div>
+</ion-content>
