@@ -1,5 +1,7 @@
 {
   "name": "ichhe-dana",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }
