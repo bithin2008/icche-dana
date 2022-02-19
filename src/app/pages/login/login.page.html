@@ -1,73 +1,119 @@
 <ion-content>
-  <div class="mainContent">
-    <div class="logo">
-      <img src="assets/icon.png" alt="" class="logoIcon">
-    </div>
-    <div class="loginDetails">
-      <h3 class="signInText">Sign-In</h3>
-      <ion-buttons slot="end" class="frg" color="warning">
-        <ion-button (click)="reset()" slot="end">
-          Forgot Password?
-        </ion-button>
-      </ion-buttons>
-      <div class="accountInput">
-        <ion-item class="ion-no-margin ion-no-padding" lines="none" class="emailInput" [class.focus]="type=='email'">
-          <ion-input class="inputTxt" placeholder="Email (phone for mobile accounts)" (ionFocus)="focus('email')">
-          </ion-input>
-        </ion-item>
-        <ion-item class="ion-no-margin ion-no-padding" lines="none" class="pwdInput" [class.focus]="type=='pwd'">
-          <ion-input class="inputTxt" placeholder="Password" [type]="passwordType" (ionFocus)="focus('pwd')">
-          </ion-input>
-        </ion-item>
-        <ion-item lines="none" class="pwdCheck">
-          <ion-label>Show Password</ion-label>
-          <ion-checkbox [(ngModel)]="typeCheck" (ionChange)="changeType()" mode="md" slot="start"></ion-checkbox>
-        </ion-item>
-        <ion-button (click)="login()" expand="block" color="warning" class="loginBtn">
-          Sign-in
-        </ion-button>
-        <div class="terms">
-          <ion-label class="lbl_police"><span class="span_term">By continuing, you agree to ionPrime's </span>
-            <u> <a href="https://google.com">Conditions of Use</a> </u> and
-            <u> <a href="https://google.com">Privacy Notice</a> </u>
-          </ion-label>
+    <div class="mainContent">
+        <div class="logo">IchheDana</div>
+        <div class="loginDetails">
+            <h3 class="signInText">Sign-In</h3>
+            <ion-buttons
+                slot="end"
+                class="frg"
+                color="warning"
+            >
+                <ion-button
+                    (click)="reset()"
+                    slot="end"
+                >
+                    Forgot Password?
+                </ion-button>
+            </ion-buttons>
+            <div class="accountInput">
+                <ion-item
+                    class="ion-no-margin ion-no-padding"
+                    lines="none"
+                    class="emailInput"
+                    [class.focus]="type=='email'"
+                >
+                    <ion-input
+                        class="inputTxt"
+                        placeholder="Email (phone for mobile accounts)"
+                        (ionFocus)="focus('email')"
+                    >
+                    </ion-input>
+                </ion-item>
+                <ion-item
+                    class="ion-no-margin ion-no-padding"
+                    lines="none"
+                    class="pwdInput"
+                    [class.focus]="type=='pwd'"
+                >
+                    <ion-input
+                        class="inputTxt"
+                        placeholder="Password"
+                        [type]="passwordType"
+                        (ionFocus)="focus('pwd')"
+                    >
+                    </ion-input>
+                </ion-item>
+                <ion-item
+                    lines="none"
+                    class="pwdCheck"
+                >
+                    <ion-label>Show Password</ion-label>
+                    <ion-checkbox
+                        [(ngModel)]="typeCheck"
+                        (ionChange)="changeType()"
+                        mode="md"
+                        slot="start"
+                    ></ion-checkbox>
+                </ion-item>
+                <ion-button
+                    (click)="login()"
+                    expand="block"
+                    color="warning"
+                    class="loginBtn"
+                >
+                    Sign-in
+                </ion-button>
+                <div class="terms">
+                    <ion-label class="lbl_police">
+                        <span class="span_term">By continuing, you agree to IchheDana's</span>
+                        <u>
+                            <a href="https://google.com">Conditions of Use</a>
+                        </u>
+                        and
+                        <u>
+                            <a href="https://google.com">Privacy Notice</a>
+                        </u>
+                    </ion-label>
+                </div>
+            </div>
+            <ion-row>
+                <ion-col size="3">
+                    <div class="center">
+                        <div class="seperator"></div>
+                    </div>
+                </ion-col>
+                <ion-col class="ion-text-center">
+                    <p class="newUser">New to IchheDana</p>
+                </ion-col>
+                <ion-col size="3">
+                    <div class="center">
+                        <div class="seperator"></div>
+                    </div>
+                </ion-col>
+            </ion-row>
+            <ion-button
+                (click)="create()"
+                expand="block"
+                color="dark"
+                class="loginBtn"
+            >
+                Create account
+            </ion-button>
         </div>
-      </div>
-      <ion-row>
-        <ion-col size="3">
-          <div class="center">
-            <div class="seperator"></div>
-          </div>
-        </ion-col>
-        <ion-col class="ion-text-center">
-          <p class="newUser">New to ionPrime</p>
-        </ion-col>
-        <ion-col size="3">
-          <div class="center">
-            <div class="seperator"></div>
-          </div>
-        </ion-col>
-      </ion-row>
-      <ion-button (click)="create()" expand="block" color="dark" class="loginBtn">
-        Create a new ionPrime account
-      </ion-button>
-    </div>
-    <div class="footerLink">
-      <div class="linkCondition">
-        <a href="https://google.com">Conditions of Use</a>
-      </div>
-      <div class="linkCondition">
-        <a href="https://google.com">Privacy Notice</a>
-      </div>
-      <div class="linkCondition">
-        <a href="https://google.com">Help</a>
-      </div>
-    </div>
-    <div class="footerCopyright">
-      <p class="copytext">
-        &copy;2019 -2020, ionPrime ,Inc. or it's affiliate
-      </p>
-    </div>
+        <div class="footerLink">
+            <div class="linkCondition">
+                <a href="https://google.com">Conditions of Use</a>
+            </div>
+            <div class="linkCondition">
+                <a href="https://google.com">Privacy Notice</a>
+            </div>
+            <div class="linkCondition">
+                <a href="https://google.com">Help</a>
+            </div>
+        </div>
+        <div class="footerCopyright">
+            <p class="copytext">&copy;2022, IchheDana</p>
+        </div>
 
-  </div>
+    </div>
 </ion-content>

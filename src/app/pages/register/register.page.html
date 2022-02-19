@@ -1,72 +1,167 @@
 <ion-content>
-  <div class="mainContent">
-    <div class="logo">
-      <img src="assets/icon.png" alt="" class="logoIcon">
-    </div>
-    <div class="loginDetails">
-      <h3 class="signInText">Sign up with your mobile number</h3>
-      <div class="accountInput">
-        <ion-item lines="none" class="emailInput" [class.focus]="type=='name'">
-          <ion-input class="inputTxt" placeholder="Name" (ionFocus)="focus('name')">
-          </ion-input>
-        </ion-item>
-        <ion-item lines="none" class="emailInput" [class.focus]="type=='email'">
-          <ion-input class="inputTxt" placeholder="Mobile number or email" (ionFocus)="focus('email')">
-          </ion-input>
-        </ion-item>
-        <ion-item lines="none" class="pwdInput" [class.focus]="type=='pwd'">
-          <ion-input class="inputTxt" placeholder="Password" [type]="passwordType" (ionFocus)="focus('pwd')">
-          </ion-input>
-        </ion-item>
-        <ion-item lines="none" class="pwdCheck">
-          <ion-label>Show Password</ion-label>
-          <ion-checkbox [(ngModel)]="typeCheck" (ionChange)="changeType()" mode="md" slot="start"></ion-checkbox>
-        </ion-item>
-        <ion-button (click)="create()" expand="block" color="warning" class="loginBtn">
-          Continue
-        </ion-button>
-        <div class="terms">
-          <ion-label class="lbl_police"><span class="span_term">By continuing, you agree to ionPrime's </span>
-            <u> <a href="https://google.com">Conditions of Use</a> </u> and
-            <u> <a href="https://google.com">Privacy Notice</a> </u>
-          </ion-label>
-        </div>
-      </div>
-      <ion-row>
-        <ion-col size="3">
-          <div class="center">
-            <div class="seperator"></div>
-          </div>
-        </ion-col>
-        <ion-col class="ion-text-center">
-          <p class="newUser">Already have an account?</p>
-        </ion-col>
-        <ion-col size="3">
-          <div class="center">
-            <div class="seperator"></div>
-          </div>
-        </ion-col>
-      </ion-row>
-      <ion-button (click)="login()" expand="block" color="dark" class="loginBtn">
-        Sign-in
-      </ion-button>
-    </div>
-    <div class="footerLink">
-      <div class="linkCondition">
-        <a href="https://google.com">Conditions of Use</a>
-      </div>
-      <div class="linkCondition">
-        <a href="https://google.com">Privacy Notice</a>
-      </div>
-      <div class="linkCondition">
-        <a href="https://google.com">Help</a>
-      </div>
-    </div>
-    <div class="footerCopyright">
-      <p class="copytext">
-        &copy;2019 -2020, ionPrime ,Inc. or it's affiliate
-      </p>
-    </div>
+    <div class="mainContent">
+        <div class="logo">IchheDana</div>
+        <div class="loginDetails">
+            <h3 class="signInText">Sign up with your mobile number</h3>
+            <div class="accountInput">
+                <form
+                    (ngSubmit)="userRegister(registerForm.value)"
+                    [formGroup]="registerForm"
+                >
+                    <ion-item
+                        lines="none"
+                        class="emailInput"
+                    >
+                        <ion-input
+                            class="inputTxt"
+                            placeholder="First Name"
+                            formControlName="firstName"
+                        >
+                        </ion-input>
+                    </ion-item>
+                    <div class="valid-message">
+                        <span *ngIf="submitted && f.firstName.errors">Please enter your first name</span>
+                    </div>
+                    <ion-item
+                        lines="none"
+                        class="emailInput"
+                    >
+                        <ion-input
+                            class="inputTxt"
+                            placeholder="Last Name"
+                            formControlName="lastName"
+                        >
+                        </ion-input>
+                    </ion-item>
+                    <div class="valid-message">
+                        <span *ngIf="submitted && f.lastName.errors">Please enter your last name</span>
+                    </div>
+                    <ion-item
+                        lines="none"
+                        class="emailInput"
+                    >
+                        <ion-input
+                            placeholder="Email"
+                            formControlName="emailId"
+                        >
+                        </ion-input>
+                    </ion-item>
+                    <div class="valid-message">
+                        <div *ngIf="submitted && f.emailId.errors">
+                            <div *ngIf="f.emailId.errors.required">Please enter your email number</div>
+                            <div *ngIf="f.emailId.errors.pattern">Please enter a valid email address</div>
+                        </div>
 
-  </div>
+                    </div>
+                    <ion-item
+                        lines="none"
+                        class="emailInput"
+                    >
+                        <ion-input
+                            placeholder="Mobile"
+                            formControlName="mobileNumber"
+                        >
+                        </ion-input>
+                    </ion-item>
+                    <div class="valid-message">
+                        <div *ngIf="submitted && f.mobileNumber.errors">
+                            <div *ngIf="f.mobileNumber.errors.required">Please enter your mobile number</div>
+                            <div *ngIf="f.mobileNumber.errors.pattern">Please enter a valid mobile number</div>
+                        </div>
+                    </div>
+                    <ion-item
+                        lines="none"
+                        class="pwdInput"
+                    >
+                        <ion-input
+                            placeholder="Password"
+                            formControlName="password"
+                        >
+                        </ion-input>
+                    </ion-item>
+                    <div class="valid-message">
+                        <span *ngIf="submitted && f.password.errors">
+                            <div *ngIf="f.password.errors.required">Please enter your password</div>
+                            <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>
+                        </span>
+                    </div>
+                    <ion-item
+                        lines="none"
+                        class="pwdInput"
+                    >
+                        <ion-input
+                            placeholder="Password"
+                            formControlName="confirmPassword"
+                        >
+                        </ion-input>
+                    </ion-item>
+                    <div class="valid-message">
+                        <span *ngIf="submitted && f.confirmPassword.errors">
+                            <div *ngIf="f.confirmPassword.errors.required">Please confirm your password</div>
+                            <div *ngIf="f.confirmPassword.errors.mustMatch">Passwords does not match</div>
+                        </span>
+                    </div>
+
+                    <ion-button
+                        expand="block"
+                        color="warning"
+                        class="loginBtn"
+                        type="submit"
+                    >
+                        Signup
+                    </ion-button>
+                </form>
+                <div class="terms">
+                    <ion-label class="lbl_police">
+                        <span class="span_term">By continuing, you agree to IchheDana's</span>
+                        <u>
+                            <a href="https://google.com">Conditions of Use</a>
+                        </u>
+                        and
+                        <u>
+                            <a href="https://google.com">Privacy Notice</a>
+                        </u>
+                    </ion-label>
+                </div>
+            </div>
+            <ion-row>
+                <ion-col size="3">
+                    <div class="center">
+                        <div class="seperator"></div>
+                    </div>
+                </ion-col>
+                <ion-col class="ion-text-center">
+                    <p class="newUser">Already have an account?</p>
+                </ion-col>
+                <ion-col size="3">
+                    <div class="center">
+                        <div class="seperator"></div>
+                    </div>
+                </ion-col>
+            </ion-row>
+            <ion-button
+                (click)="login()"
+                expand="block"
+                color="dark"
+                class="loginBtn"
+            >
+                Sign-in
+            </ion-button>
+        </div>
+        <div class="footerLink">
+            <div class="linkCondition">
+                <a href="https://google.com">Conditions of Use</a>
+            </div>
+            <div class="linkCondition">
+                <a href="https://google.com">Privacy Notice</a>
+            </div>
+            <div class="linkCondition">
+                <a href="https://google.com">Help</a>
+            </div>
+        </div>
+        <div class="footerCopyright">
+            <p class="copytext">&copy;2022, IchheDana</p>
+        </div>
+
+    </div>
 </ion-content>

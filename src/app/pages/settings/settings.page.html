@@ -2,57 +2,98 @@
     <div class="mainContent">
         <h3 class="title">Settings</h3>
         <div class="customList">
-            <ion-item lines="none" (click)="stream()">
-                <ion-label class="header">Stream & Download <br>
+            <ion-item
+                lines="none"
+                (click)="stream()"
+            >
+                <ion-label class="header">
+                    Stream & Download
+                    <br>
                     <p class="subTitle">Manage quality and Wi-Fi</p>
                 </ion-label>
             </ion-item>
-            <ion-item lines="none" (click)="notification()">
-                <ion-label class="header">Notifications<br>
+            <ion-item
+                lines="none"
+                (click)="notification()"
+            >
+                <ion-label class="header">
+                    Notifications
+                    <br>
                     <p class="subTitle">On</p>
                 </ion-label>
             </ion-item>
             <ion-item lines="none">
-                <ion-label class="header">Auto Play<br>
+                <ion-label class="header">
+                    Auto Play
+                    <br>
                     <p class="subTitle">Play the next episode automatically</p>
                 </ion-label>
-                <ion-toggle [(ngModel)]="autoPlay" slot="end" color="warning"></ion-toggle>
+                <ion-toggle
+                    [(ngModel)]="autoPlay"
+                    slot="end"
+                    color="warning"
+                ></ion-toggle>
             </ion-item>
-            <ion-item lines="none" (click)="control()">
-                <ion-label class="header">Parental Controls<br>
+            <ion-item
+                lines="none"
+                (click)="control()"
+            >
+                <ion-label class="header">
+                    Parental Controls
+                    <br>
                     <p class="subTitle">Control what you can watch</p>
                 </ion-label>
             </ion-item>
             <ion-item lines="none">
-                <ion-label class="header">Registered Devices<br>
+                <ion-label class="header">
+                    Registered Devices
+                    <br>
                     <p class="subTitle">Sell al registered devices</p>
                 </ion-label>
             </ion-item>
-            <ion-item lines="none" (click)="clearSearch()">
-                <ion-label class="header">Clear Video Search History
+            <ion-item
+                lines="none"
+                (click)="clearSearch()"
+            >
+                <ion-label class="header">Clear Video Search History</ion-label>
+            </ion-item>
+            <ion-item
+                lines="none"
+                (click)="logout()"
+            >
+                <ion-label class="header">
+                    Signed in as rcap_designs
+                    <br>
+                    <p class="subTitle">Sign out of all IchheDana apps</p>
                 </ion-label>
             </ion-item>
-            <ion-item lines="none" (click)="logout()">
-                <ion-label class="header">Signed in as rcap_designs<br>
-                    <p class="subTitle">Sign out of all ionPrime apps</p>
-                </ion-label>
-            </ion-item>
-            <ion-item lines="none" (click)="languages()">
-                <ion-label class="header">Languages<br>
+            <ion-item
+                lines="none"
+                (click)="languages()"
+            >
+                <ion-label class="header">
+                    Languages
+                    <br>
                     <p class="subTitle">English</p>
                 </ion-label>
             </ion-item>
-            <ion-item lines="none" (click)="contactus()">
-                <ion-label class="header">Contact Us
-                </ion-label>
+            <ion-item
+                lines="none"
+                (click)="contactus()"
+            >
+                <ion-label class="header">Contact Us</ion-label>
             </ion-item>
-            <ion-item lines="none" (click)="about()">
-                <ion-label class="header">About & Legal
-                </ion-label>
+            <ion-item
+                lines="none"
+                (click)="about()"
+            >
+                <ion-label class="header">About & Legal</ion-label>
             </ion-item>
-            <ion-item lines="none" (click)="help()">
-                <ion-label class="header">Help
-                </ion-label>
+            <ion-item
+                lines="none"
+                (click)="help()"
+            >
+                <ion-label class="header">Help</ion-label>
             </ion-item>
         </div>
     </div>

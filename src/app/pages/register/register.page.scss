@@ -6,6 +6,10 @@ ion-content{
     padding: 15px;
     .logo{
         text-align: center;
+        text-align: center;
+        color: #fff;
+        font-weight: 900;
+        font-size: 20px;
         .logoIcon{
             width: 80px;
         }
@@ -26,11 +30,11 @@ ion-content{
             }
             .emailInput{
                 border: 1px solid lightgray;
-                margin: 10px 0px ;
+                margin: 5px 0px 3px;
             }
             .pwdInput{
                 border: 1px solid lightgray;
-                margin: 10px 0px ;
+                margin: 5px 0px 3px ;
             }
             .focus{
                border:2px solid #f6ae0a;
@@ -40,7 +44,7 @@ ion-content{
                 --background: transparent;
             }
             .loginBtn{
-                margin-top: 40px;
+                margin-top: 20px;
             }
             ion-item{
                 --background: #f9fcff2b;
@@ -84,4 +88,35 @@ ion-content{
             color:#F8F8F8;;
         }
     }
+}
+
+.valid-message{
+    color: #ff2929;
+    font-size: 13px;
+    font-family: "Roboto Slab", serif;
+    font-weight: 400;
+    display: block;
+    margin-top: 2px;
+    height: 17px;
+    margin-bottom: 0px;
+    padding-bottom: 0;
+    text-align: left;
+    margin-left: 3px;
+}
+
+.warning span{ 
+    display: flex;
+    margin: 0 auto;
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    border: 3px solid #fff;
+    align-items: center;
+    justify-content: center;
+}
+
+.warning i{
+    color: #ffbe05;
+    font-size: 35px;
+    margin-top: -7px;
 }
