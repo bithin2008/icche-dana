@@ -1,6 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-
+import { HttpClient } from "@angular/common/http";
+import { Router, ActivatedRoute } from '@angular/router';
+import { CommonService } from '../../service/common-service';
+import { ToastService } from '../../service/toast.service';
+import { ModalController } from '@ionic/angular';
+import { MenuController, NavController } from '@ionic/angular';
+import { LoadingService } from '../../service/loading-service';
+import { ToastModalComponent } from '../toast-modal/toast-modal.component';
+import { environment } from '../../../environments/environment';
+import { AlertController } from '@ionic/angular';
 @Component({
   selector: 'app-home',
   templateUrl: './home.page.html',
@@ -8,6 +16,7 @@ import { Router } from '@angular/router';
 })
 export class HomePage implements OnInit {
   feature: any;
+  frontBanners: any = [];
   slideOpts = {
     slidesPerView: 1,
     grabCursor: true,
@@ -24,9 +33,20 @@ export class HomePage implements OnInit {
   };
 
   constructor(
-    private router: Router
+    public router: Router,
+    route: ActivatedRoute,
+    private httpClient: HttpClient,
+    public _toastService: ToastService,
+    public modalController: ModalController,
+    private _commonService: CommonService,
+    private alertController: AlertController,
+    private menu: MenuController,
+    public loading: LoadingService,
+    private navCtrl: NavController
   ) {
-    this.feature = 'home';
+    route.params.subscribe(val => {
+      this.getFrontBanner();
+    });
   }
 
   ngOnInit() {
@@ -43,5 +63,18 @@ export class HomePage implements OnInit {
   }
   series() {
     this.router.navigate(['series']);
+  }
+
+  getFrontBanner() {
+    let url = "FrontBanner";
+    this._commonService.get(url).subscribe((response) => {
+      this.frontBanners = [];
+      response.frontBanner.forEach(element => {
+        element.banner = environment.API_ENDPOINT + element.bannerUrl.replaceAll('\\', '/');
+        this.frontBanners.push(element)
+      });
+    }, (error) => {
+      console.log("error ts: ", error);
+    });
   }
 }

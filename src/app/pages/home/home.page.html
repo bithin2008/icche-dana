@@ -44,60 +44,14 @@
                 pager="ios"
                 [options]="slideOpts"
             >
-                <ion-slide (click)="details()">
-                    <div
-                        class="sliderImg back_img"
-                        [style.backgroundImage]="'url(assets/sliders/1.jpg)'"
-                    ></div>
-                </ion-slide>
-                <ion-slide (click)="details()">
-                    <div
-                        class="sliderImg back_img"
-                        [style.backgroundImage]="'url(assets/sliders/2.jpg)'"
-                    ></div>
-                </ion-slide>
-                <ion-slide (click)="details()">
-                    <div
-                        class="sliderImg back_img"
-                        [style.backgroundImage]="'url(assets/sliders/3.jpeg)'"
-                    ></div>
-                </ion-slide>
-                <ion-slide (click)="details()">
-                    <div
-                        class="sliderImg back_img"
-                        [style.backgroundImage]="'url(assets/sliders/1.jpg)'"
-                    ></div>
-                </ion-slide>
-                <ion-slide (click)="details()">
-                    <div
-                        class="sliderImg back_img"
-                        [style.backgroundImage]="'url(assets/sliders/2.jpg)'"
-                    ></div>
-                </ion-slide>
-                <ion-slide (click)="details()">
-                    <div
-                        class="sliderImg back_img"
-                        [style.backgroundImage]="'url(assets/sliders/3.jpeg)'"
-                    ></div>
-                </ion-slide>
-                <ion-slide (click)="details()">
-                    <div
-                        class="sliderImg back_img"
-                        [style.backgroundImage]="'url(assets/sliders/1.jpg)'"
-                    ></div>
-                </ion-slide>
-                <ion-slide (click)="details()">
-                    <div
-                        class="sliderImg back_img"
-                        [style.backgroundImage]="'url(assets/sliders/2.jpg)'"
-                    ></div>
-                </ion-slide>
-                <ion-slide (click)="details()">
-                    <div
-                        class="sliderImg back_img"
-                        [style.backgroundImage]="'url(assets/sliders/3.jpeg)'"
-                    ></div>
-                </ion-slide>
+                <ng-container *ngFor="let item of frontBanners">
+                    <ion-slide (click)="details()">
+                        <div
+                            class="sliderImg back_img"
+                            [ngStyle]="{'background-image': 'url(&quot;'+ item.banner +'&quot;'}"
+                        ></div>
+                    </ion-slide>
+                </ng-container>
             </ion-slides>
         </div>
         <div class="featureType">

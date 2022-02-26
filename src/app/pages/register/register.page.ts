@@ -41,7 +41,7 @@ export class RegisterPage implements OnInit {
         firstName: ['', Validators.required],
         lastName: ['', Validators.required],
         emailId: ['', [Validators.required, Validators.pattern(/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i)]],
-        mobileNumber: ['', [Validators.required, Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")]],
+        mobileNumber: ['', [Validators.required]],
         password: ['', [Validators.required, Validators.minLength(6)]],
         confirmPassword: ['', Validators.required]
       }, {
@@ -77,7 +77,7 @@ export class RegisterPage implements OnInit {
     this.enableLoader = true;
     // data.deviceToken=this.deviceId;
     let url = "users";
-    // data.mobileNumber = BigInt(data.mobileNumber);
+    data.mobileNumber = parseInt(data.mobileNumber);
     data.ipAdress = "10.23.20";
     data.deviceName = "Addroid 100";
     this._commonService.noTokenPost(url, data).subscribe((response) => {

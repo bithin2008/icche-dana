@@ -16,53 +16,61 @@
                 </ion-button>
             </ion-buttons>
             <div class="accountInput">
-                <ion-item
-                    class="ion-no-margin ion-no-padding"
-                    lines="none"
-                    class="emailInput"
-                    [class.focus]="type=='email'"
+                <form
+                    (ngSubmit)="userLogin(loginForm.value)"
+                    [formGroup]="loginForm"
+                    class="{{isBlur?'content-prefix':''}}"
                 >
-                    <ion-input
-                        class="inputTxt"
-                        placeholder="Email (phone for mobile accounts)"
-                        (ionFocus)="focus('email')"
+                    <ion-item
+                        class="ion-no-margin ion-no-padding"
+                        lines="none"
+                        class="emailInput"
+                        [class.focus]="type=='email'"
                     >
-                    </ion-input>
-                </ion-item>
-                <ion-item
-                    class="ion-no-margin ion-no-padding"
-                    lines="none"
-                    class="pwdInput"
-                    [class.focus]="type=='pwd'"
-                >
-                    <ion-input
-                        class="inputTxt"
-                        placeholder="Password"
-                        [type]="passwordType"
-                        (ionFocus)="focus('pwd')"
+                        <ion-input
+                            class="inputTxt"
+                            placeholder="Email (phone for mobile accounts)"
+                            name="mobile"
+                            formControlName="mobile"
+                        >
+                        </ion-input>
+                    </ion-item>
+
+                    <div class="valid-message">
+                        <div *ngIf="submitted && f.mobile.errors">
+                            <div *ngIf="f.mobile.errors.required">Please enter your mobile number</div>
+                            <div *ngIf="f.mobile.errors.pattern">Please enter a valid mobile number</div>
+                        </div>
+                    </div>
+                    <ion-item
+                        class="ion-no-margin ion-no-padding"
+                        lines="none"
+                        class="pwdInput"
+                        [class.focus]="type=='pwd'"
                     >
-                    </ion-input>
-                </ion-item>
-                <ion-item
-                    lines="none"
-                    class="pwdCheck"
-                >
-                    <ion-label>Show Password</ion-label>
-                    <ion-checkbox
-                        [(ngModel)]="typeCheck"
-                        (ionChange)="changeType()"
-                        mode="md"
-                        slot="start"
-                    ></ion-checkbox>
-                </ion-item>
-                <ion-button
-                    (click)="login()"
-                    expand="block"
-                    color="warning"
-                    class="loginBtn"
-                >
-                    Sign-in
-                </ion-button>
+                        <ion-input
+                            class="inputTxt"
+                            placeholder="Password"
+                            name="password"
+                            formControlName="password"
+                        >
+                        </ion-input>
+                    </ion-item>
+                    <div class="valid-message">
+                        <span *ngIf="submitted && f.password.errors">
+                            <div *ngIf="f.password.errors.required">Please enter your password</div>
+                            <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>
+                        </span>
+                    </div>
+                    <ion-button
+                        expand="block"
+                        color="warning"
+                        type="submit"
+                        class="loginBtn"
+                    >
+                        Sign-in
+                    </ion-button>
+                </form>
                 <div class="terms">
                     <ion-label class="lbl_police">
                         <span class="span_term">By continuing, you agree to IchheDana's</span>
