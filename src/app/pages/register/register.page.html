@@ -1,166 +1,222 @@
 <ion-content>
     <div class="mainContent">
-        <div class="logo">IchheDana</div>
+        <!-- <div class="logo">IchheDana</div> -->
         <div class="loginDetails">
-            <h3 class="signInText">Sign up with your mobile number</h3>
-            <div class="accountInput">
-                <form
-                    (ngSubmit)="userRegister(registerForm.value)"
-                    [formGroup]="registerForm"
-                >
-                    <ion-item
-                        lines="none"
-                        class="emailInput"
-                    >
-                        <ion-input
-                            class="inputTxt"
-                            placeholder="First Name"
-                            formControlName="firstName"
-                        >
-                        </ion-input>
-                    </ion-item>
-                    <div class="valid-message">
-                        <span *ngIf="submitted && f.firstName.errors">Please enter your first name</span>
-                    </div>
-                    <ion-item
-                        lines="none"
-                        class="emailInput"
-                    >
-                        <ion-input
-                            class="inputTxt"
-                            placeholder="Last Name"
-                            formControlName="lastName"
-                        >
-                        </ion-input>
-                    </ion-item>
-                    <div class="valid-message">
-                        <span *ngIf="submitted && f.lastName.errors">Please enter your last name</span>
-                    </div>
-                    <ion-item
-                        lines="none"
-                        class="emailInput"
-                    >
-                        <ion-input
-                            placeholder="Email"
-                            formControlName="emailId"
-                        >
-                        </ion-input>
-                    </ion-item>
-                    <div class="valid-message">
-                        <div *ngIf="submitted && f.emailId.errors">
-                            <div *ngIf="f.emailId.errors.required">Please enter your email number</div>
-                            <div *ngIf="f.emailId.errors.pattern">Please enter a valid email address</div>
-                        </div>
-
-                    </div>
-                    <ion-item
-                        lines="none"
-                        class="emailInput"
-                    >
-                        <ion-input
-                            placeholder="Mobile"
-                            formControlName="mobileNumber"
-                        >
-                        </ion-input>
-                    </ion-item>
-                    <div class="valid-message">
-                        <div *ngIf="submitted && f.mobileNumber.errors">
-                            <div *ngIf="f.mobileNumber.errors.required">Please enter your mobile number</div>
-                            <div *ngIf="f.mobileNumber.errors.pattern">Please enter a valid mobile number</div>
-                        </div>
-                    </div>
-                    <ion-item
-                        lines="none"
-                        class="pwdInput"
-                    >
-                        <ion-input
-                            placeholder="Password"
-                            formControlName="password"
-                        >
-                        </ion-input>
-                    </ion-item>
-                    <div class="valid-message">
-                        <span *ngIf="submitted && f.password.errors">
-                            <div *ngIf="f.password.errors.required">Please enter your password</div>
-                            <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>
-                        </span>
-                    </div>
-                    <ion-item
-                        lines="none"
-                        class="pwdInput"
-                    >
-                        <ion-input
-                            placeholder="Password"
-                            formControlName="confirmPassword"
-                        >
-                        </ion-input>
-                    </ion-item>
-                    <div class="valid-message">
-                        <span *ngIf="submitted && f.confirmPassword.errors">
-                            <div *ngIf="f.confirmPassword.errors.required">Please confirm your password</div>
-                            <div *ngIf="f.confirmPassword.errors.mustMatch">Passwords does not match</div>
-                        </span>
-                    </div>
-
-                    <ion-button
-                        expand="block"
-                        color="warning"
-                        class="loginBtn"
-                        type="submit"
-                    >
-                        Signup
-                    </ion-button>
-                </form>
-                <div class="terms">
-                    <ion-label class="lbl_police">
-                        <span class="span_term">By continuing, you agree to IchheDana's</span>
-                        <u>
-                            <a href="https://google.com">Conditions of Use</a>
-                        </u>
-                        and
-                        <u>
-                            <a href="https://google.com">Privacy Notice</a>
-                        </u>
-                    </ion-label>
+            <div class="registration-container">
+                <div class="registration-header">Create a new account</div>
+                <div class="registration-subheader">
+                    Create an account to continue enjoying uninterrupted video and personalised experience
                 </div>
-            </div>
-            <ion-row>
-                <ion-col size="3">
-                    <div class="center">
-                        <div class="seperator"></div>
+                <div
+                    class="noSelect loginFormGooglClass googleLoginIcon socialLoginIcon"
+                    id="gbtn"
+                >
+                    <ul class="social-login">
+                        <li>
+                            <img src="../../../assets/icon/gmail-icon.png">
+                        </li>
+                        <li>
+                            <img src="../../../assets/icon/fb-icon.png">
+                        </li>
+                    </ul>
+                </div>
+                <div class="loginhr loginhr-circle">
+                    <div>
+                        <span>OR</span>
                     </div>
-                </ion-col>
-                <ion-col class="ion-text-center">
-                    <p class="newUser">Already have an account?</p>
-                </ion-col>
-                <ion-col size="3">
-                    <div class="center">
-                        <div class="seperator"></div>
+                </div>
+                <div class="tabset">
+                    <!-- Tab 1 -->
+                    <input
+                        type="radio"
+                        name="tabset"
+                        aria-controls="marzen"
+                        [(ngModel)]="mobileTab"
+                        (click)="tabChange($event)"
+                        checked
+                    >
+                    <label
+                        for="tab1"
+                        id="tab1"
+                        class="{{mobileTab?'active':''}}"
+                        (click)="tabChange($event)"
+                    >
+                        Mobile
+                    </label>
+                    <!-- Tab 2 -->
+                    <input
+                        type="radio"
+                        name="tabset"
+                        aria-controls="rauchbier"
+                        [(ngModel)]="emailTab"
+                    >
+                    <label
+                        for="tab2"
+                        id="tab2"
+                        class="{{emailTab?'active':''}}"
+                        (click)="tabChange($event)"
+                    >
+                        Email
+                    </label>
+
+                    <div class="tab-panels">
+                        <section
+                            id="marzen"
+                            class="tab-panel"
+                            *ngIf="mobileTabContent"
+                        >
+                            <form
+                                (ngSubmit)="userRegister(registerMobileForm.value)"
+                                [formGroup]="registerMobileForm"
+                            >
+                                <div class="form-container">
+                                    <div class="input-countrycode">
+                                        <div class="usernameField">
+                                            <ion-item lines="none">
+                                                <!-- <ion-label position="floating">Mobile Number</ion-label> -->
+                                                <ion-intl-tel-input
+                                                    formControlName="mobileNumber"
+                                                    [enableAutoCountrySelect]="true"
+                                                    [maxLength]="15"
+                                                    [phoneValidation]="true"
+                                                ></ion-intl-tel-input>
+                                            </ion-item>
+
+                                            <div class="valid-message">
+                                                <div *ngIf="submitted && f.mobileNumber.errors">
+                                                    <div *ngIf="f.mobileNumber.errors.required">Please enter your mobile number</div>
+                                                    <div *ngIf="f.mobileNumber.errors.phone">Please enter a valid mobile number</div>
+                                                </div>
+                                            </div>
+
+                                            <!-- <div class="floating-label-input">
+                                    <input
+                                        type="text"
+                                        name="userName"
+                                        class="form-input"
+                                        autocomplete="tel"
+                                        spellcheck="false"
+                                        id="textField"
+                                        value
+                                    >
+                                    <span class="inputLabel ">Mobile Number</span>
+                                    <div class="displayErrormessage"></div>
+                                </div> -->
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="bottomWrap">
+                                    <div class="regBottom">
+                                        <div class="label-container">
+                                            <span class="checkboxLabel">
+                                                By proceeding you agree to our
+                                                <span class="no-select">Terms of Services</span>
+                                                &amp;
+                                                <span class="no-select">Privacy Policy</span>
+                                                .
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="buttonContainer ">
+
+                                        <ion-button
+                                            expand="block"
+                                            color="warning"
+                                            type="submit"
+                                            class="loginBtn"
+                                        >
+                                            Send OTP
+                                        </ion-button>
+                                    </div>
+                                    <div class="login-link">
+                                        Already registered?
+                                        <a routerLink="/login">
+                                            <span class="noSelect login-text">Login</span>
+                                        </a>
+
+                                    </div>
+                                </div>
+                            </form>
+                        </section>
+                        <section
+                            id="rauchbier"
+                            class="tab-panel"
+                            *ngIf="emailTabContent"
+                        >
+                            <form
+                                (ngSubmit)="userEmailRegister(registerEmailForm.value)"
+                                [formGroup]="registerEmailForm"
+                            >
+                                <div class="form-container">
+                                    <div class="input-email-code">
+                                        <div class="usernameField">
+                                            <ion-item lines="none">
+                                                <ion-label position="floating">Email</ion-label>
+                                                <ion-input formControlName="emailId"></ion-input>
+                                            </ion-item>
+
+                                            <div class="valid-message">
+                                                <div *ngIf="emailsubmitted && g.emailId.errors">
+                                                    <div *ngIf="g.emailId.errors.required">Please enter your email</div>
+                                                    <div *ngIf="g.emailId.errors.pattern">Please enter a valid email</div>
+                                                </div>
+                                            </div>
+
+                                            <!-- <div class="floating-label-input">
+                            <input
+                                type="text"
+                                name="userName"
+                                class="form-input"
+                                autocomplete="tel"
+                                spellcheck="false"
+                                id="textField"
+                                value
+                            >
+                            <span class="inputLabel ">Mobile Number</span>
+                            <div class="displayErrormessage"></div>
+                        </div> -->
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="bottomWrap">
+                                    <div class="regBottom">
+                                        <div class="label-container">
+                                            <span class="checkboxLabel">
+                                                By proceeding you agree to our
+                                                <span class="no-select">Terms of Services</span>
+                                                &amp;
+                                                <span class="no-select">Privacy Policy</span>
+                                                .
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="buttonContainer ">
+
+                                        <ion-button
+                                            expand="block"
+                                            color="warning"
+                                            type="submit"
+                                            class="loginBtn"
+                                        >
+                                            Send OTP
+                                        </ion-button>
+                                    </div>
+                                    <div class="login-link">
+                                        Already registered?
+                                        <a routerLink="/login">
+                                            <span class="noSelect login-text">Login</span>
+                                        </a>
+
+                                    </div>
+                                </div>
+                            </form>
+                        </section>
                     </div>
-                </ion-col>
-            </ion-row>
-            <ion-button
-                (click)="login()"
-                expand="block"
-                color="dark"
-                class="loginBtn"
-            >
-                Sign-in
-            </ion-button>
-        </div>
-        <div class="footerLink">
-            <div class="linkCondition">
-                <a href="https://google.com">Conditions of Use</a>
+
+                </div>
+
             </div>
-            <div class="linkCondition">
-                <a href="https://google.com">Privacy Notice</a>
-            </div>
-            <div class="linkCondition">
-                <a href="https://google.com">Help</a>
-            </div>
-        </div>
-        <div class="footerCopyright">
-            <p class="copytext">&copy;2022, IchheDana</p>
+
         </div>
 
     </div>

@@ -6,6 +6,7 @@ ion-content{
     padding: 15px;
     .logo{
         text-align: center;
+        text-align: center;
         color: #fff;
         font-weight: 900;
         font-size: 20px;
@@ -21,20 +22,19 @@ ion-content{
         .frg{
             position: absolute;
             right: 15px;
-            color: blue !important;
         }
         .accountInput{
-            margin-top: 50px;
+            margin-top: 20px;
             .inputTxt{
                 padding-left: 5px !important;
             }
             .emailInput{
-                border-top: 1px solid lightgray;
-                border-left: 1px solid lightgray;
-                border-right: 1px solid lightgray;
+                border: 1px solid lightgray;
+                margin: 5px 0px 3px;
             }
             .pwdInput{
                 border: 1px solid lightgray;
+                margin: 5px 0px 3px ;
             }
             .focus{
                border:2px solid #f6ae0a;
@@ -44,7 +44,7 @@ ion-content{
                 --background: transparent;
             }
             .loginBtn{
-                margin-top: 40px;
+                margin-top: 20px;
             }
             ion-item{
                 --background: #f9fcff2b;
@@ -90,16 +90,274 @@ ion-content{
     }
 }
 
+.registration-container {
+    text-align: center;
+    position: relative;
+    padding-top: 70px;
+}
+.registration-container .registration-header {
+    display: block;
+    color: #fff;
+    display: block!important;
+    font-family: NotoSansBold,sans-serif;
+    font-size:22px;
+    line-height: 1em;
+    font-weight: 700;
+    width: 100%;
+    text-align: center;
+    margin: auto;
+    padding: 10px 0 20px!important;
+    height: 12px;
+}
+
+.registration-container .registration-subheader {
+    color: #cfc3ca;
+    font-family: NotoSansRegular,sans-serif;
+    font-size: 15px;
+    line-height: 1.28571em;
+    font-weight: 400;
+    text-align: center;
+    padding: 10px 8px 20px!important;
+}
+
+.registration-container .loginhr.loginhr-circle {
+    background-color: #ffc409;
+    width: 36px;
+    height: 36px;
+    border-radius: 19px;
+    border-bottom: 0;
+    line-height: .1em;
+    margin: 24px auto 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.registration-container .loginhr div {
+    padding: 0 6px;
+    height: 17px;
+    display: inline-block;
+    margin-top: 16px;
+    position: relative;
+}
+
+
+   
+
+// .loginhr div:before {
+//     content: "";
+//     border-bottom: 1px solid #31133a;
+//     display: inline-block;
+//     width: 100%;
+//     position: absolute;
+//     top: 9px;
+//     z-index: 0;
+//     left: 0;
+//     right: 0;
+// }
+
+
+.regMainContainer .loginhrLine div span {
+    display: inline-block;
+    font-family: NotoSansMedium,sans-serif;
+    font-size: 1.2rem;
+    line-height: 1.5em;
+    font-weight: 500;
+    color: #fff;
+    position: relative;
+    text-transform: lowercase;
+}
 .valid-message{
     color: #ff2929;
-    font-size: 12px;
+    font-size: 13px;
     font-family: "Roboto Slab", serif;
     font-weight: 400;
     display: block;
-    margin-top: 1px;
-    height: 14px;
+    margin-top: 3px;
+    height: 17px;
     margin-bottom: 0px;
     padding-bottom: 0;
     text-align: left;
-    margin-left: 3px;
+    margin-left: 20px;
 }
+
+.registration-container .form-container {
+    text-align: left;
+    margin: 0 8px;
+}
+
+ion-item {
+    --background: transparent !important;
+    color: #fff;
+    border-bottom: 1px solid #fff;
+  }
+
+
+
+.input-countrycode {
+    position: relative;
+    margin-top: 30px;
+}
+
+.input-email-code {
+    position: relative;
+    margin-top: 23px;
+}
+
+.input-countrycode .usernameField, .input-email-code  .usernameField{
+    box-sizing: border-box;
+}
+
+
+.input-countrycode .usernameField .floating-label-input,.input-email-code .usernameField .floating-label-input {
+    margin-top: 5px;
+    width: 100%;
+}
+
+.input-countrycode .usernameField .floating-label-input .form-input,.input-email-code .usernameField .floating-label-input .form-input {
+    font-family: NotoSansMedium,sans-serif;
+    font-size: 1.6rem;
+    line-height: 1em;
+    font-weight: 500;
+    height: 37px;
+    box-sizing: border-box;
+    padding: 0;
+    color: #fff;
+    box-shadow: none;
+    background-color: transparent;
+    border: 0;
+    border-bottom: 1px solid hsla(0,0%,100%,.2)
+}
+
+.social-login{
+    display: block;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
+.social-login li{
+    display: inline-block;
+    padding: 10px;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background-color: #fff;
+    margin: 10px;
+}
+
+.label-container {
+    display: block;
+    position: relative;
+    padding: 4px 15px;
+    margin-bottom: 12px;
+    text-align: left;
+    font-family: NotoSansRegular, sans-serif;
+    font-size: 13px;
+    line-height: 1.28571em;
+    font-weight: 400;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    line-height: 18px;
+    color: hsla(0,0%,100%,.8);
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
+.login-link {
+    color: #fff;
+    margin-top: 15px;
+    padding-bottom: 24px;
+    font-family: NotoSansRegular, sans-serif;
+    font-size: 13px;
+    line-height: 1.28571em;
+    font-weight: 400;
+    text-align: center;
+}
+
+.login-link a{
+    text-decoration: none;
+}
+
+.login-text,.no-select{
+    color: #ffc409;
+}
+
+.warning span{ 
+    display: flex;
+    margin: 0 auto;
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    border: 3px solid #fff;
+    align-items: center;
+    justify-content: center;
+}
+
+.warning i{
+    color: #ffbe05;
+    font-size: 35px;
+    margin-top: -7px;
+}
+
+.tabset > input[type="radio"] {
+    position: absolute;
+    left: -200vw;
+  }
+  
+//   .tabset .tab-panel {
+//     display: none;
+//   }
+  
+  .tabset > input:first-child:checked ~ .tab-panels > .tab-panel:first-child,
+  .tabset > input:nth-child(3):checked ~ .tab-panels > .tab-panel:nth-child(2),
+  .tabset > input:nth-child(5):checked ~ .tab-panels > .tab-panel:nth-child(3),
+  .tabset > input:nth-child(7):checked ~ .tab-panels > .tab-panel:nth-child(4),
+  .tabset > input:nth-child(9):checked ~ .tab-panels > .tab-panel:nth-child(5),
+  .tabset > input:nth-child(11):checked ~ .tab-panels > .tab-panel:nth-child(6) {
+    display: block;
+  }
+  
+  /*
+   Styling
+  */
+  body {
+    font: 16px/1.5em "Overpass", "Open Sans", Helvetica, sans-serif;
+    color: #333;
+    font-weight: 300;
+  }
+  
+  .tabset > label {
+    position: relative;
+    display: inline-block;
+    padding: 15px 15px 10px;
+    border: 1px solid transparent;
+    border-bottom: 0;
+    cursor: pointer;
+    font-weight: 600;
+    color: #fff;
+  }
+  
+
+  .tabset > label:hover,
+  .tabset > input:focus + label {
+    color: #fff;
+  }
+  
+  .tabset > label:hover::after,
+  .tabset > input:focus + label::after,
+  .tabset > input:checked + label::after {
+    background: #fff;
+  }
+  
+  .tabset > label.active {
+    border-bottom: 1px solid #fff;
+    margin-bottom: -1px;
+    color: #fff;
+  }
+  
+  .tab-panel {
+    padding: 5px 0;
+    border-top: 1px solid #4a4a4a;
+  }

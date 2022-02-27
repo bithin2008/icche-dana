@@ -1,14 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { IonContent, NavController } from '@ionic/angular';
 import { HttpClient } from "@angular/common/http";
-import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
+import { MenuController } from '@ionic/angular';
 import { CommonService } from '../../service/common-service';
 import { ToastService } from '../../service/toast.service';
-import { ModalController } from '@ionic/angular';
-import { MenuController, NavController } from '@ionic/angular';
 import { LoadingService } from '../../service/loading-service';
+import { ModalController } from '@ionic/angular';
 import { ToastModalComponent } from '../toast-modal/toast-modal.component';
-import { AlertController } from '@ionic/angular';
+import { IonIntlTelInputValidators, IonIntlTelInputModel } from 'ion-intl-tel-input';
+//import { Network } from '@ionic-native/network/ngx';
+import { MustMatch } from '../_helper/must-match.validator';
 
 @Component({
   selector: 'app-login',
@@ -16,99 +19,173 @@ import { AlertController } from '@ionic/angular';
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
-  message: string;
-  submitted: boolean = false;
-  loginForm: FormGroup;
-  isBlur: boolean = false;
-  placeHolderVal = 'Mobile Number';
+  type: any;
+  passwordType: string = 'text';
+  typeCheck: boolean = true;
+  registerMobileForm: FormGroup;
+  registerEmailForm: FormGroup;
   enableLoader: boolean = false;
-  deviceId: any;
-  token: any;
-  messsageObj: any = {};
-  defaultLanguage: any;
-  showPass: boolean = false;
+  submitted: boolean = false;
+  emailsubmitted: boolean = false;
+  phone: IonIntlTelInputModel = {
+    dialCode: '+91',
+    internationalNumber: '+91 300 1234567',
+    isoCode: 'in',
+    nationalNumber: ''
+  };
+  mobileTab: boolean = false;
+  mobileTabContent: boolean = false;
+  emailTab: boolean = false;
+  emailTabContent: boolean = false;
   constructor(
     public router: Router,
-    private formBuilder: FormBuilder,
     route: ActivatedRoute,
     private httpClient: HttpClient,
+    private formBuilder: FormBuilder,
     public _toastService: ToastService,
     public modalController: ModalController,
     private _commonService: CommonService,
-    private alertController: AlertController,
     private menu: MenuController,
     public loading: LoadingService,
-    private navCtrl: NavController
   ) {
-
-
     route.params.subscribe(val => {
-      this.loginForm = this.formBuilder.group({
-        mobile: ['', [Validators.required, Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")]],
-        // email: ['', [Validators.required, Validators.pattern(/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i)]],
-        password: ['', [Validators.required, Validators.minLength(6)]],
+      this.mobileTab = true
+      this.emailTab = false
+      this.mobileTabContent = true;
+      this.emailTabContent = false;
+      this.registerMobileForm = this.formBuilder.group({
+        mobileNumber: [this.phone, [Validators.required, IonIntlTelInputValidators.phone]]
       });
+
+      this.registerEmailForm = this.formBuilder.group({
+        emailId: ['', [Validators.required, Validators.pattern(/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i)]],
+      });
+
     });
   }
 
   ngOnInit() {
+    this.mobileTab = true
+    this.emailTab = false
+    this.mobileTabContent = true;
+    this.emailTabContent = false;
   }
-  get f() { return this.loginForm.controls; }
-  // getDeviceId(){
-  //   this.uniqueDeviceID.get()
-  // .then((uuid: any) => {
-  //   console.log(uuid);
-  //   this.deviceId=uuid;
-  // })
-  // .catch((error: any) => console.log(error));
-  // }
-  userLogin(data: any) {
-    console.log('data', data);
+
+  tabChange(event) {
+    if (event.target.id == 'tab1') {
+
+
+      setTimeout(() => {
+        this.mobileTabContent = true;
+        this.emailTabContent = false;
+        this.mobileTab = true;
+        this.emailTab = false;
+        this.registerMobileForm = this.formBuilder.group({
+          mobileNumber: [this.phone, [Validators.required, IonIntlTelInputValidators.phone]]
+        });
+      }, 500);
+    };
+    if (event.target.id == 'tab2') {
+
+
+      setTimeout(() => {
+        this.mobileTabContent = false;
+        this.emailTabContent = true;
+        this.mobileTab = false;
+        this.emailTab = true;
+        this.registerEmailForm = this.formBuilder.group({
+          emailId: ['', [Validators.required, Validators.pattern(/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i)]],
+        });
+      }, 500);
+
+
+
+    };
+  }
+
+  focus(type) {
+    console.log('focu', type);
+    this.type = type;
+  }
+
+  changeType() {
+    this.passwordType = this.typeCheck === true ? 'text' : 'password';
+  }
+  login() {
+    //  this.navCtrl.back();
+  }
+
+  get f() { return this.registerMobileForm.controls; }
+
+  get g() { return this.registerEmailForm.controls; }
+
+  userMobileRegister(data: any) {
     this.submitted = true;
+
     // stop here if form is invalid
-    if (this.loginForm.invalid) {
+    if (this.registerMobileForm.invalid) {
       return;
     }
-    //   data.deviceToken=this.deviceId;
     this.enableLoader = true;
-    let url = "users/login";
-    data.lang = localStorage.getItem('language');
+    // data.deviceToken=this.deviceId;
+    let url = "users";
+    data.DeviceName = "Addroid 100";
+    data.IpAdress = "10.10.10.10";
     this._commonService.noTokenPost(url, data).subscribe((response) => {
       console.log('response', response);
       this.enableLoader = false;
-      if (response.success) {
-        if (response.status == 1) {
-          localStorage.setItem('token', response.result.token);
-          localStorage.setItem('name', response.result.name);
-          localStorage.setItem('mobile', response.result.mobile);
-          localStorage.setItem('email', response.result.email);
-          if (response.result.class) {
-            localStorage.setItem('className', response.result.class.name);
-            localStorage.setItem('classId', response.result.class._id);
-            this.showToast('success', this.messsageObj.login.loginSuccess[this.defaultLanguage], this.messsageObj.login.enjoyLearning[this.defaultLanguage], 3500, '/dashboard');
-          } else {
-            this.showToast('warning', this.messsageObj.login.classSelect[this.defaultLanguage], this.messsageObj.login.selectClassAndLearning[this.defaultLanguage], 3500, '/class/' + response.result._id + '/' + true);
-          }
-        }
-        if (response.status == 2) {
-          this.showToast('warning', this.messsageObj.login.emailNotVerified[this.defaultLanguage], response.message, 3500, '/otp');
-        }
-        if (response.status == 3) {
-          this.showToast('warning', this.messsageObj.login.accountInactive[this.defaultLanguage], response.message, 3500, '/otp');
-        }
-        if (response.status == 4) {
-          // this.logoutFromAllDevice(response.message);
-        }
-        if (response.status == 0) {
-          this.showToast('warning', this.messsageObj.login.invalidMessage[this.defaultLanguage], response.message, 3500, '');
-        }
-      } else {
-        if (response.status == 0) {
-          this.showToast('error', this.messsageObj.login.invalidMessage[this.defaultLanguage], response.message, 3500, '');
-        }
+      // if (response.success) {
+      //  this.registeredId = response.result._id;
+      if (response.status == 1) {
+        this.showToast('success', "OTP Sent", "Check your mobile for OTP", 3500, '/otp')
       }
+      if (response.status == 2) {
+        this.showToast('warning', "Already Registered", "Now login and enjoy", 3500, '/login')
+      }
+      if (response.status == 3) {
+        this.showToast('warning', "Mobile number Not Verified", "OTP sent to your mobile for verification", 4000, '/otp')
+      }
+      if (response.status == 0) {
+        this.showToast('warning', "Terms and Conditions", "RESPONSE", 4000, '')
+      }
+
     }, (error) => {
+      console.log("error ts: ", error);
+    });
+  }
+
+
+  userEmailRegister(data: any) {
+    this.emailsubmitted = true;
+
+    // stop here if form is invalid
+    if (this.registerEmailForm.invalid) {
+      return;
+    }
+    this.enableLoader = true;
+    // data.deviceToken=this.deviceId;
+    let url = "users";
+    data.DeviceName = "Addroid 100";
+    data.IpAdress = "10.10.10.10";
+    this._commonService.noTokenPost(url, data).subscribe((response) => {
+      console.log('response', response);
       this.enableLoader = false;
+      // if (response.success) {
+      //  this.registeredId = response.result._id;
+      if (response.status == 1) {
+        this.showToast('success', "OTP Sent", "Check your mobile for OTP", 3500, '/otp')
+      }
+      if (response.status == 2) {
+        this.showToast('warning', "Already Registered", "Now login and enjoy", 3500, '/login')
+      }
+      if (response.status == 3) {
+        this.showToast('warning', "Mobile number Not Verified", "OTP sent to your mobile for verification", 4000, '/otp')
+      }
+      if (response.status == 0) {
+        this.showToast('warning', "Terms and Conditions", "RESPONSE", 4000, '')
+      }
+
+    }, (error) => {
       console.log("error ts: ", error);
     });
   }
@@ -127,5 +204,4 @@ export class LoginPage implements OnInit {
     });
     return await modal.present();
   }
-
 }
