@@ -1,6 +1,38 @@
 <ion-content>
     <div class="mainContent">
-        <h3 class="title">Settings</h3>
+        <h3 class="title">Ichhe Dana</h3>
+        <div class="profile-bar ">
+            <div class="login-panel">
+                <span class="login-btn">
+                    <div class="buttonContainer ">
+
+                        <ion-button
+                            expand="block"
+                            fill="outline"
+                            color="warning"
+                            type="button"
+                            class="loginBtn"
+                            (click)="goToLogin()"
+                        >
+                            Login
+                        </ion-button>
+                    </div>
+                </span>
+                <span class="login-btn titleAlign ">
+                    <div class="buttonContainer ">
+                        <ion-button
+                            expand="block"
+                            color="warning"
+                            type="button"
+                            class="loginBtn"
+                            (click)="goToRegister()"
+                        >
+                            Register
+                        </ion-button>
+                    </div>
+                </span>
+            </div>
+        </div>
         <div class="customList">
             <ion-item
                 lines="none"

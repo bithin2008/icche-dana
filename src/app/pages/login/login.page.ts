@@ -136,18 +136,21 @@ export class LoginPage implements OnInit {
       this.enableLoader = false;
       // if (response.success) {
       //  this.registeredId = response.result._id;
-      if (response.status == 1) {
-        this.showToast('success', "OTP Sent", "Check your mobile for OTP", 3500, '/otp')
-      }
-      if (response.status == 2) {
-        this.showToast('warning', "Already Registered", "Now login and enjoy", 3500, '/login')
-      }
-      if (response.status == 3) {
-        this.showToast('warning', "Mobile number Not Verified", "OTP sent to your mobile for verification", 4000, '/otp')
-      }
-      if (response.status == 0) {
-        this.showToast('warning', "Terms and Conditions", "RESPONSE", 4000, '')
-      }
+      localStorage.setItem('userId', response.createuser.userId);
+      localStorage.setItem('emailId', response.createuser.emailId);
+      this.router.navigate(['/login-otp'])
+      // if (response.status == 1) {
+      //   this.showToast('success', "OTP Sent", "Check your mobile for OTP", 3500, '/otp')
+      // }
+      // if (response.status == 2) {
+      //   this.showToast('warning', "Already Registered", "Now login and enjoy", 3500, '/login')
+      // }
+      // if (response.status == 3) {
+      //   this.showToast('warning', "Mobile number Not Verified", "OTP sent to your mobile for verification", 4000, '/otp')
+      // }
+      // if (response.status == 0) {
+      //   this.showToast('warning', "Terms and Conditions", "RESPONSE", 4000, '')
+      // }
 
     }, (error) => {
       console.log("error ts: ", error);
@@ -170,6 +173,9 @@ export class LoginPage implements OnInit {
     this._commonService.noTokenPost(url, data).subscribe((response) => {
       console.log('response', response);
       this.enableLoader = false;
+      localStorage.setItem('userId', response.createuser.userId);
+      localStorage.setItem('emailId', response.createuser.emailId);
+      this.router.navigate(['/login-otp'])
       // if (response.success) {
       //  this.registeredId = response.result._id;
       if (response.status == 1) {

@@ -54,6 +54,14 @@ const routes: Routes = [
   {
     path: 'search-results',
     loadChildren: () => import('./pages/search-results/search-results.module').then(m => m.SearchResultsPageModule)
+  },
+  {
+    path: 'otp',
+    loadChildren: () => import('./pages/otp/otp.module').then(m => m.OtpPageModule)
+  },
+  {
+    path: 'login-otp',
+    loadChildren: () => import('./pages/login-otp/login-otp.module').then( m => m.LoginOtpPageModule)
   }
 ];
 @NgModule({

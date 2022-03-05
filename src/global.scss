@@ -35,3 +35,45 @@
     background-repeat: no-repeat;
     background-size: cover;
 }
+
+:root {
+    ion-back-button {
+      --color: #fff;
+      text-indent: -9999px;
+    }
+  }
+
+ion-header{
+    background: #000;
+}
+ion-toolbar{
+    --background: #000;
+    // --background: linear-gradient(315deg, #0aa6ca 0%, #42378f 100%);
+    --color:#fff;
+}
+
+.otp-input {
+    display: inline-block;
+    width: 50px !important;
+    height: 60px !important;
+    margin: 3px 10px;
+    padding: 0;
+    border-radius: 0% !important;
+    background: black;
+    font-weight: 700;
+    border: none !important;
+    border-bottom: 1px solid #5e5e5d !important;
+    color: #ffc409 !important;
+    margin-right: 8px;
+    padding-top: 2px;
+    font-size: 20px !important;
+  }
+  
+  .otp-input:focus {
+    outline: none;
+  }
+.otp-container{
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+}

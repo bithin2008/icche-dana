@@ -27,3 +27,32 @@ ion-content{
     }
     
 }
+
+.profile-bar {
+    padding: 15px 5px;
+    background: hsla(0,0%,100%,.06);
+    height: 40px;
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+
+  .login-panel {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-grow: 1;
+  }
+
+  .login-btn {
+
+    position: relative;
+    display: flex;
+align-items: center;
+display: inline-block;
+
+box-sizing: border-box;
+cursor: pointer;
+width: 100%;
+margin: 5px;
+  }

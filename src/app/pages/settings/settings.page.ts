@@ -32,6 +32,13 @@ export class SettingsPage implements OnInit {
     this.router.navigate(['settings/languages']);
   }
 
+  goToLogin() {
+    this.router.navigate(['/login']);
+  }
+  goToRegister() {
+    this.router.navigate(['/register']);
+  }
+
   async clearSearch() {
     const toast = await this.toastController.create({
       message: 'search history cleared',

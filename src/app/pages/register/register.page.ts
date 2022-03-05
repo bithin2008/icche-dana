@@ -161,19 +161,19 @@ export class RegisterPage implements OnInit {
       this.enableLoader = false;
       // if (response.success) {
       //  this.registeredId = response.result._id;
-      if (response.status == 1) {
+      if (response.status == 208) {
         this.showToast('success', "OTP Sent", "Check your mobile for OTP", 3500, '/otp')
-      }
-      if (response.status == 2) {
+      } else if (response.status == 207) {
         this.showToast('warning', "Already Registered", "Now login and enjoy", 3500, '/login')
-      }
-      if (response.status == 3) {
+      } else if (response.status == 800) {
         this.showToast('warning', "Mobile number Not Verified", "OTP sent to your mobile for verification", 4000, '/otp')
-      }
-      if (response.status == 0) {
+      } else if (response.status == 801) {
         this.showToast('warning', "Terms and Conditions", "RESPONSE", 4000, '')
+      } else {
+        localStorage.setItem('userId', response.createuser.userId);
+        localStorage.setItem('emailId', response.createuser.emailId);
+        this.router.navigate(['/otp'])
       }
-
     }, (error) => {
       console.log("error ts: ", error);
     });
