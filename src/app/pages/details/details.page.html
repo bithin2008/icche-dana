@@ -11,16 +11,18 @@
                 class="backBtn"
             >
         </div>
-        <div class="contentSection">
+        <div
+            class="contentSection"
+            *ngIf="viewItemDetails.hasOwnProperty('viewitemMaterials')"
+        >
             <div
                 class="backImage back_img"
                 (click)="playVideo()"
-                [style.backgroundImage]="'url(assets/sliders/2.jpg)'"
+                [ngStyle]="{'background-image': 'url(&quot;' + bannerUrl + '&quot;)'}"
             ></div>
             <div class="mainDetails">
-                <h3 class="movieTitle">Lorem impus</h3>
-                <p class="primeContent">IchheDana</p>
-                <p class="purchase">Watch for $0.00 with IchheDana</p>
+                <h3 class="movieTitle">{{viewItemDetails.name}}</h3>
+                <p class="primeContent">{{viewItemDetails.title}}</p>
                 <ion-button
                     (click)="onPurchase()"
                     expand="block"
@@ -62,11 +64,13 @@
                         <ion-col size="1.5"></ion-col>
                     </ion-row>
                 </ion-grid>
-                <p class="descrition">
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry
-          text of the printing and typesetting industry
+                <p class="descrition">{{viewItemDetails.description}}</p>
+                <p
+                    class="imdb"
+                    *ngIf="viewItemDetails.hasOwnProperty('viewItemDetails')"
+                >
+                    IMDB {{viewItemDetails?.viewItemDetails[0]?.imdbRating}}
                 </p>
-                <p class="imdb">IMDB 7.5</p>
                 <p class="timeAndDuration">2019 103 min</p>
             </div>
         </div>

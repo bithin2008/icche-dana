@@ -28,7 +28,7 @@ const routes: Routes = [
     loadChildren: () => import('./pages/settings/settings.module').then(m => m.SettingsPageModule)
   },
   {
-    path: 'details',
+    path: 'details/:viewItemId',
     loadChildren: () => import('./pages/details/details.module').then(m => m.DetailsPageModule)
   },
   {
@@ -61,7 +61,7 @@ const routes: Routes = [
   },
   {
     path: 'login-otp',
-    loadChildren: () => import('./pages/login-otp/login-otp.module').then( m => m.LoginOtpPageModule)
+    loadChildren: () => import('./pages/login-otp/login-otp.module').then(m => m.LoginOtpPageModule)
   }
 ];
 @NgModule({

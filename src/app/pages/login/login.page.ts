@@ -128,9 +128,7 @@ export class LoginPage implements OnInit {
     }
     this.enableLoader = true;
     // data.deviceToken=this.deviceId;
-    let url = "users";
-    data.DeviceName = "Addroid 100";
-    data.IpAdress = "10.10.10.10";
+    let url = `users/otpverification?DeviceName=window&IpAdress=10.10.10.10&mobileNumber=${localStorage.getItem('emailId')}`;
     this._commonService.noTokenPost(url, data).subscribe((response) => {
       console.log('response', response);
       this.enableLoader = false;
@@ -167,14 +165,13 @@ export class LoginPage implements OnInit {
     }
     this.enableLoader = true;
     // data.deviceToken=this.deviceId;
-    let url = "users";
-    data.DeviceName = "Addroid 100";
-    data.IpAdress = "10.10.10.10";
-    this._commonService.noTokenPost(url, data).subscribe((response) => {
+    let url = `users/otpverification?DeviceName=window&IpAdress=10.10.10.10&email=${data.emailId}`;
+    this._commonService.noTokenPost(url, {}).subscribe((response) => {
       console.log('response', response);
       this.enableLoader = false;
-      localStorage.setItem('userId', response.createuser.userId);
-      localStorage.setItem('emailId', response.createuser.emailId);
+      localStorage.setItem('userId', response.user.userId);
+      localStorage.setItem('emailId', response.user.emailId);
+      localStorage.setItem('userHistoryId', response.userLoginHistory.userLoginHistoryId);
       this.router.navigate(['/login-otp'])
       // if (response.success) {
       //  this.registeredId = response.result._id;
@@ -187,9 +184,7 @@ export class LoginPage implements OnInit {
       if (response.status == 3) {
         this.showToast('warning', "Mobile number Not Verified", "OTP sent to your mobile for verification", 4000, '/otp')
       }
-      if (response.status == 0) {
-        this.showToast('warning', "Terms and Conditions", "RESPONSE", 4000, '')
-      }
+
 
     }, (error) => {
       console.log("error ts: ", error);

@@ -17,6 +17,7 @@ import { AlertController } from '@ionic/angular';
 export class HomePage implements OnInit {
   feature: any;
   frontBanners: any = [];
+  frontPoster: any = [];
   slideOpts = {
     slidesPerView: 1,
     grabCursor: true,
@@ -46,6 +47,7 @@ export class HomePage implements OnInit {
   ) {
     route.params.subscribe(val => {
       this.getFrontBanner();
+      this.getCategoryWisePoster();
     });
   }
 
@@ -58,8 +60,9 @@ export class HomePage implements OnInit {
     this.router.navigate(['details']);
   }
 
-  details() {
-    this.router.navigate(['details']);
+  details(obj) {
+    console.log(obj)
+    this.router.navigate(['details/' + obj.viewItemId]);
   }
   series() {
     this.router.navigate(['series']);
@@ -72,6 +75,39 @@ export class HomePage implements OnInit {
       response.frontBanner.forEach(element => {
         element.banner = environment.API_ENDPOINT + element.bannerUrl.replaceAll('\\', '/');
         this.frontBanners.push(element)
+      });
+    }, (error) => {
+      console.log("error ts: ", error);
+    });
+  }
+
+  getCategoryWisePoster() {
+    let url = "CategoryWisePoster";
+    this._commonService.get(url).subscribe((response) => {
+      this.frontPoster = [];
+      response.categoryWisePoster.forEach(element => {
+        if (element.details) {
+          if (element.details.posterDetails) {
+            var obj: any = {};
+            obj.categoryId = element.details.categoryId;
+            obj.categoryName = element.details.categoryName;
+            obj.posters = [];
+            element.details.posterDetails.forEach(item => {
+              item.viewItemId = element.details.viewItemId;
+              item.subCategoryId = element.details.subCategoryId
+
+              item.categoryPriority = element.details.categoryPriority;
+              item.subCategoryName = element.details.subCategoryName;
+              item.subCategoryPriority = element.details.subCategoryPriority;
+              item.url = environment.API_ENDPOINT + item.posterURL.replaceAll('\\', '/');
+              obj.posters.push(item);
+            });
+            this.frontPoster.push(obj);
+            console.log('this.frontPoster', this.frontPoster)
+          }
+        }
+
+        console.log('frontPoster', this.frontPoster);
       });
     }, (error) => {
       console.log("error ts: ", error);

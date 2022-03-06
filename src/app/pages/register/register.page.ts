@@ -156,18 +156,21 @@ export class RegisterPage implements OnInit {
     let url = "users";
     data.DeviceName = "Addroid 100";
     data.IpAdress = "10.10.10.10";
+    data.IsAdmin = false;
     this._commonService.noTokenPost(url, data).subscribe((response) => {
       console.log('response', response);
       this.enableLoader = false;
       // if (response.success) {
       //  this.registeredId = response.result._id;
-      if (response.status == 208) {
-        this.showToast('success', "OTP Sent", "Check your mobile for OTP", 3500, '/otp')
-      } else if (response.status == 207) {
-        this.showToast('warning', "Already Registered", "Now login and enjoy", 3500, '/login')
-      } else if (response.status == 800) {
+      if (response.statusCode == 208) {
+        this.showToast('warning', "Already Registered", "Just login and enjoy", 3500, '/login')
+      } else if (response.statusCode == 207) {
+        localStorage.setItem('userId', response.user.userId);
+        localStorage.setItem('emailId', response.user.emailId);
+        this.showToast('warning', "Not verified", "verify your profile", 3500, '/otp')
+      } else if (response.statusCode == 800) {
         this.showToast('warning', "Mobile number Not Verified", "OTP sent to your mobile for verification", 4000, '/otp')
-      } else if (response.status == 801) {
+      } else if (response.statusCode == 801) {
         this.showToast('warning', "Terms and Conditions", "RESPONSE", 4000, '')
       } else {
         localStorage.setItem('userId', response.createuser.userId);
@@ -183,6 +186,7 @@ export class RegisterPage implements OnInit {
     const modal = await this.modalController.create({
       component: ToastModalComponent,
       cssClass: 'toast-modal',
+      showBackdrop: false,
       componentProps: {
         status: status,
         message: message,

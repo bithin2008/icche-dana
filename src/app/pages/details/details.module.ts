@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 
 import { DetailsPageRoutingModule } from './details-routing.module';
-
+import { StreamingMedia, StreamingVideoOptions } from '@ionic-native/streaming-media';
 import { DetailsPage } from './details.page';
 
 @NgModule({
@@ -13,8 +13,9 @@ import { DetailsPage } from './details.page';
     CommonModule,
     FormsModule,
     IonicModule,
+    StreamingMedia,
     DetailsPageRoutingModule
   ],
   declarations: [DetailsPage]
 })
-export class DetailsPageModule {}
+export class DetailsPageModule { }

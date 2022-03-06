@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ToastController, AlertController } from '@ionic/angular';
 
 @Component({
@@ -9,11 +9,27 @@ import { ToastController, AlertController } from '@ionic/angular';
 })
 export class SettingsPage implements OnInit {
   autoPlay: boolean = true;
+  token: any = '';
+  userMobile: any;
+  userEmail: any;
   constructor(
-    private router: Router,
+    public router: Router,
+    route: ActivatedRoute,
     private toastController: ToastController,
     private alertController: AlertController
-  ) { }
+  ) {
+
+    route.params.subscribe(val => {
+      console.log('this.router.url', this.router.url)
+      this.token = localStorage.getItem('token');
+      if (!this.token) {
+        //  this.router.navigate([`/`]);
+      } else {
+        this.userMobile = '';
+        this.userEmail = localStorage.getItem('emailId');
+      }
+    });
+  }
 
   ngOnInit() {
   }

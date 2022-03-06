@@ -58,14 +58,19 @@ export class OtpPage implements OnInit {
 
   otpSubmit() {
 
-    let url = `users/userconfirmation?userId=${localStorage.getItem('userId')}&email=${localStorage.getItem('emailId')}&otp=${this.otpValue}`;
+    let url = `users/userconfirmation?userId=${localStorage.getItem('userId')}&email=${localStorage.getItem('emailId')}&otp=${this.otpValue}&isAdmin=false`;
 
     this._commonService.noTokenPost(url, {}).subscribe((response) => {
       console.log('response', response);
-      this.router.navigate(['/'])
+      if (response.statusCode == 200) {
+        this.showToast('success', 'Registration Completed', 'Just login & enjoy', 3500, 'login')
+      } else {
+        this.showToast('error', 'Oops! wrong otp', response.message, 3500, '/otp')
+      }
+
       // this.enableOverlay = true;
       if (response.success) {
-        if (response.status == 1) {
+        if (response.user == 1) {
           this.ngOtpInputRef.setValue('');
           // this.showToast('success', this.messsageObj.otpPage.verifiedMessage[this.defaultLanguage], response.message, 3500, '/class/' + response.result._id)
         }
@@ -81,6 +86,22 @@ export class OtpPage implements OnInit {
     }, (error) => {
       console.log("error ts: ", error);
     });
+  }
+
+  async showToast(status, message, submessage, timer, redirect) {
+    const modal = await this.modalController.create({
+      component: ToastModalComponent,
+      cssClass: 'toast-modal',
+      showBackdrop: false,
+      componentProps: {
+        status: status,
+        message: message,
+        submessage: submessage,
+        timer: timer,
+        redirect: redirect
+      }
+    });
+    return await modal.present();
   }
 
 }

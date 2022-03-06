@@ -2,7 +2,10 @@
     <div class="mainContent">
         <h3 class="title">Ichhe Dana</h3>
         <div class="profile-bar ">
-            <div class="login-panel">
+            <div
+                class="login-panel"
+                *ngIf="!token"
+            >
                 <span class="login-btn">
                     <div class="buttonContainer ">
 
@@ -32,6 +35,12 @@
                     </div>
                 </span>
             </div>
+            <h5
+                *ngIf="token"
+                class="text-center"
+            >
+                Hi, {{this.userEmail}}
+            </h5>
         </div>
         <div class="customList">
             <ion-item

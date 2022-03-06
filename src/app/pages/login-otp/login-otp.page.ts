@@ -54,29 +54,49 @@ export class LoginOtpPage implements OnInit {
     }
   }
 
-  otpSubmit() {
-    let url = `users/otpverification?DeviceName=window&IpAdress=10.10.10.10&email=${localStorage.getItem('emailId')}&otp=${this.otpValue}`;
-
+  resendOtp() {
+    let url = `users/resendotp?userId=${localStorage.getItem('userId')}&DeviceName=window&IpAdress=10.10.10.10`;
     this._commonService.noTokenPost(url, {}).subscribe((response) => {
       console.log('response', response);
-      this.router.navigate(['/'])
-      // this.enableOverlay = true;
-      if (response.success) {
-        if (response.status == 1) {
-          this.ngOtpInputRef.setValue('');
-          // this.showToast('success', this.messsageObj.otpPage.verifiedMessage[this.defaultLanguage], response.message, 3500, '/class/' + response.result._id)
-        }
+      if (response.statusCode == 200) {
+        localStorage.setItem('token', response.token);
+        this.showToast('success', 'OTP send ', 'Check your email', 3500, '/login-otp')
       } else {
-        if (response.status == 0) {
-          this.ngOtpInputRef.setValue('');
-          //  this.showToast('error', this.messsageObj.otpPage.invalidMessage[this.defaultLanguage], response.message, 3500, '/otp')
-        }
-        if (response.status == 2) {
-          //  this.showToast('warning', this.messsageObj.otpPage.alreadyVerifiedMessage[this.defaultLanguage], this.messsageObj.otpPage.enjoyLearningMessage[this.defaultLanguage], 3500, '/login');
-        }
+        this.showToast('error', 'Oops! wrong otp', response.message, 3500, '/login-otp')
       }
     }, (error) => {
       console.log("error ts: ", error);
     });
+  }
+
+  otpSubmit() {
+    let url = `users/authenticate?userId=${localStorage.getItem('userId')}&otp=${this.otpValue}&UserLoginHistoryId=${localStorage.getItem('userHistoryId')}`;
+    this._commonService.noTokenPost(url, {}).subscribe((response) => {
+      console.log('response', response);
+      if (response.statusCode == 200) {
+        localStorage.setItem('token', response.token);
+        this.showToast('success', 'Successfully loggedin', 'Now enjoy Ichhe dana', 3500, '/')
+      } else {
+        this.showToast('error', 'Oops! wrong otp', response.message, 3500, '/login-otp')
+      }
+    }, (error) => {
+      console.log("error ts: ", error);
+    });
+  }
+
+  async showToast(status, message, submessage, timer, redirect) {
+    const modal = await this.modalController.create({
+      component: ToastModalComponent,
+      cssClass: 'toast-modal',
+      showBackdrop: false,
+      componentProps: {
+        status: status,
+        message: message,
+        submessage: submessage,
+        timer: timer,
+        redirect: redirect
+      }
+    });
+    return await modal.present();
   }
 }

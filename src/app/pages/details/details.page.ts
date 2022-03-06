@@ -1,7 +1,16 @@
-import { Component, OnInit } from '@angular/core';
-import { NavController } from '@ionic/angular';
-import { Router } from '@angular/router';
-// import { StreamingVideoOptions, StreamingMedia } from '@ionic-native/streaming-media/ngx';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { IonContent, NavController } from '@ionic/angular';
+import { HttpClient } from "@angular/common/http";
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router, ActivatedRoute } from '@angular/router';
+import { MenuController } from '@ionic/angular';
+import { CommonService } from '../../service/common-service';
+import { ToastService } from '../../service/toast.service';
+import { LoadingService } from '../../service/loading-service';
+import { ModalController } from '@ionic/angular';
+import { StreamingMedia, StreamingVideoOptions } from '@awesome-cordova-plugins/streaming-media/ngx';
+import { ToastModalComponent } from '../toast-modal/toast-modal.component';
+import { environment } from '../../../environments/environment';
 @Component({
   selector: 'app-details',
   templateUrl: './details.page.html',
@@ -9,6 +18,10 @@ import { Router } from '@angular/router';
 })
 export class DetailsPage implements OnInit {
   feature: any;
+  viewItemId: any;
+  viewItemDetails: any = {};
+  bannerUrl: any = '';
+  trailerUrl: any = '';
   slideOptsType = {
     slidesPerView: 2.1,
     grabCursor: true,
@@ -61,17 +74,25 @@ export class DetailsPage implements OnInit {
     },
   ];
   constructor(
-    private navCtrl: NavController,
-    private router: Router,
-    // public stream: StreamingMedia
+    public router: Router,
+    public activatedRoute: ActivatedRoute,
+    private httpClient: HttpClient,
+    public _toastService: ToastService,
+    public modalController: ModalController,
+    private _commonService: CommonService,
+    private menu: MenuController,
+    public loading: LoadingService,
+    private streamingMedia: StreamingMedia
   ) {
     this.feature = 'Related';
   }
 
   ngOnInit() {
+    this.viewItemId = this.activatedRoute.snapshot.paramMap.get("viewItemId");
+    this.getItemDetails();
   }
   back() {
-    this.navCtrl.back();
+    // this.navCtrl.back();
   }
   segmentChanged(event) {
 
@@ -86,14 +107,37 @@ export class DetailsPage implements OnInit {
     this.router.navigate(['actor-profile']);
   }
   playVideo() {
-    // const options: StreamingVideoOptions = {
-    //   successCallback: () => { console.log('Video played'); },
-    //   errorCallback: (e) => { console.log('Error streaming', e); },
-    //   orientation: 'landscape',
-    //   shouldAutoClose: true,
-    //   controls: true
-    // };
-    // const url = 'https://firebasestorage.googleapis.com/v0/b/ionic4-app-template.appspot.com/o/movie.mp4?alt=media&token=1288805c-fa71-46f9-ba92-b0c4b023852e';
-    // this.stream.playVideo(url, options);
+    const options: StreamingVideoOptions = {
+      successCallback: () => { console.log('Video played'); },
+      errorCallback: (e) => { console.log('Error streaming', e); },
+      orientation: 'landscape',
+      shouldAutoClose: true,
+      controls: true
+    };
+    const url = this.trailerUrl;
+    this.streamingMedia.playVideo(url, options);
+  }
+
+  getItemDetails() {
+    // this.spinnerService.show();
+    let url = `ViewItem/${this.viewItemId}`;
+    this._commonService.get(url).subscribe((response) => {
+      //  this.spinnerService.hide();
+      // if (response.viewItemDetails.length > 0) {
+      this.viewItemDetails = response[0];
+      if (this.viewItemDetails.viewitemMaterials) {
+        this.viewItemDetails.viewitemMaterials.forEach(element => {
+          if (element.banners) {
+            this.bannerUrl = environment.API_ENDPOINT + element.bannerUrl.replaceAll('\\', '/');
+          }
+
+          if (element.trailers) {
+            this.trailerUrl = environment.API_ENDPOINT + element.trailerUrl.replaceAll('\\', '/');
+          }
+        });
+      }
+    }, (error) => {
+      console.log('error', error);
+    });
   }
 }
