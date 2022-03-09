@@ -8,9 +8,9 @@ import { CommonService } from '../../service/common-service';
 import { ToastService } from '../../service/toast.service';
 import { LoadingService } from '../../service/loading-service';
 import { ModalController } from '@ionic/angular';
-import { StreamingMedia, StreamingVideoOptions } from '@awesome-cordova-plugins/streaming-media/ngx';
 import { ToastModalComponent } from '../toast-modal/toast-modal.component';
 import { environment } from '../../../environments/environment';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 @Component({
   selector: 'app-details',
   templateUrl: './details.page.html',
@@ -73,6 +73,10 @@ export class DetailsPage implements OnInit {
       username: 'Maxime_Nienow',
     },
   ];
+  activeIndex = 0;
+
+  data: any;
+  videoURL: string = 'http://www.hazrainfotech.com/api-v1/Resources/Trailer/Pushpa-traile.mp4'
   constructor(
     public router: Router,
     public activatedRoute: ActivatedRoute,
@@ -82,7 +86,7 @@ export class DetailsPage implements OnInit {
     private _commonService: CommonService,
     private menu: MenuController,
     public loading: LoadingService,
-    private streamingMedia: StreamingMedia
+    private domSanitizer: DomSanitizer
   ) {
     this.feature = 'Related';
   }
@@ -107,15 +111,20 @@ export class DetailsPage implements OnInit {
     this.router.navigate(['actor-profile']);
   }
   playVideo() {
-    const options: StreamingVideoOptions = {
-      successCallback: () => { console.log('Video played'); },
-      errorCallback: (e) => { console.log('Error streaming', e); },
-      orientation: 'landscape',
-      shouldAutoClose: true,
-      controls: true
+    var options = {
+      bgColor: "#FFFFFF",
+      bgImage: "",
+      bgImageScale: "fit", // other valid values: "stretch", "aspectStretch"
+      initFullscreen: false, // true is default. iOS only.
+      keepAwake: false, // prevents device from sleeping. true is default. Android only.
+      successCallback: function () {
+        console.log("Player closed without error.");
+      },
+      errorCallback: function (errMsg) {
+        console.log("Error! " + errMsg);
+      }
     };
-    const url = this.trailerUrl;
-    this.streamingMedia.playVideo(url, options);
+    window['plugins'].streamingMedia.playVideo(this.trailerUrl, options);
   }
 
   getItemDetails() {
@@ -128,16 +137,45 @@ export class DetailsPage implements OnInit {
       if (this.viewItemDetails.viewitemMaterials) {
         this.viewItemDetails.viewitemMaterials.forEach(element => {
           if (element.banners) {
-            this.bannerUrl = environment.API_ENDPOINT + element.bannerUrl.replaceAll('\\', '/');
+            this.bannerUrl = environment.API_ENDPOINT + element.banners.bannerUrl.replaceAll('\\', '/');
           }
 
           if (element.trailers) {
-            this.trailerUrl = environment.API_ENDPOINT + element.trailerUrl.replaceAll('\\', '/');
+            this.trailerUrl = environment.API_ENDPOINT + element.trailers.trailerUrl.replaceAll('\\', '/');
           }
         });
       }
     }, (error) => {
       console.log('error', error);
     });
+  }
+
+  videoItems = [
+    {
+      name: 'Video one',
+      src: this.domSanitizer.bypassSecurityTrustResourceUrl(this.videoURL),
+      type: 'video/mp4'
+    },
+  ];
+
+  currentVideo = this.videoItems[this.activeIndex];
+  videoPlayerInit(data: any) {
+    this.data = data;
+    this.data.getDefaultMedia().subscriptions.loadedMetadata.subscribe(this.initVdo.bind(this));
+    this.data.getDefaultMedia().subscriptions.ended.subscribe(this.nextVideo.bind(this));
+  }
+  nextVideo() {
+    this.activeIndex++;
+    if (this.activeIndex === this.videoItems.length) {
+      this.activeIndex = 0;
+    }
+    this.currentVideo = this.videoItems[this.activeIndex];
+  }
+  initVdo() {
+    this.data.play();
+  }
+  startPlaylistVdo(item: any, index: number) {
+    this.activeIndex = index;
+    this.currentVideo = item;
   }
 }

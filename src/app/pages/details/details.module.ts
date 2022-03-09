@@ -5,16 +5,23 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 
 import { DetailsPageRoutingModule } from './details-routing.module';
-import { StreamingMedia, StreamingVideoOptions } from '@ionic-native/streaming-media';
+
 import { DetailsPage } from './details.page';
+import { VgCoreModule } from '@videogular/ngx-videogular/core';
+import { VgControlsModule } from '@videogular/ngx-videogular/controls';
+import { VgOverlayPlayModule } from '@videogular/ngx-videogular/overlay-play';
+import { VgBufferingModule } from '@videogular/ngx-videogular/buffering';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    StreamingMedia,
-    DetailsPageRoutingModule
+    DetailsPageRoutingModule,
+    VgCoreModule,
+    VgControlsModule,
+    VgOverlayPlayModule,
+    VgBufferingModule,
   ],
   declarations: [DetailsPage]
 })

@@ -3,5 +3,14 @@
   "integrations": {
     "cordova": {}
   },
-  "type": "angular"
+  "type": "angular",
+  "v2": true,
+  "typescript": true,
+  "proxies": [
+    {
+      "path": "/api-v1",
+      "proxyUrl": "http://www.hazrainfotech.com"
+    }
+  ],
+  "id": "app_id"
 }

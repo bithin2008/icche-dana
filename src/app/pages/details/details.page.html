@@ -15,14 +15,49 @@
             class="contentSection"
             *ngIf="viewItemDetails.hasOwnProperty('viewitemMaterials')"
         >
-            <div
+            <!-- <div
                 class="backImage back_img"
                 (click)="playVideo()"
                 [ngStyle]="{'background-image': 'url(&quot;' + bannerUrl + '&quot;)'}"
-            ></div>
+            ></div> -->
+            <div class="video-player-wrapper">
+                <vg-player (onPlayerReady)="videoPlayerInit($event)">
+                    <vg-overlay-play></vg-overlay-play>
+                    <vg-buffering></vg-buffering>
+                    <vg-scrub-bar>
+                        <vg-scrub-bar-current-time></vg-scrub-bar-current-time>
+                        <vg-scrub-bar-buffering-time></vg-scrub-bar-buffering-time>
+                    </vg-scrub-bar>
+                    <vg-controls>
+                        <vg-play-pause></vg-play-pause>
+                        <vg-playback-button></vg-playback-button>
+                        <vg-time-display
+                            vgProperty="current"
+                            vgFormat="mm:ss"
+                        ></vg-time-display>
+                        <vg-time-display
+                            vgProperty="total"
+                            vgFormat="mm:ss"
+                        ></vg-time-display>
+                        <vg-mute></vg-mute>
+                        <vg-volume></vg-volume>
+                        <vg-fullscreen></vg-fullscreen>
+                    </vg-controls>
+                    <video
+                        #media
+                        [vgMedia]="$any(media)"
+                        [src]="currentVideo.src"
+                        id="singleVideo"
+                        preload="auto"
+                        crossorigin
+                    >
+                    </video>
+                </vg-player>
+
+            </div>
             <div class="mainDetails">
-                <h3 class="movieTitle">{{viewItemDetails.name}}</h3>
-                <p class="primeContent">{{viewItemDetails.title}}</p>
+                <h3 class="movieTitle">{{viewItemDetails?.name}}</h3>
+                <p class="primeContent">{{viewItemDetails?.title}}</p>
                 <ion-button
                     (click)="onPurchase()"
                     expand="block"
