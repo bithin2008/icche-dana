@@ -32,6 +32,7 @@
     "ion-intl-tel-input": "^1.0.5",
     "ionic-native": "^2.9.0",
     "ionic-selectable": "^4.9.0",
+    "lodash": "^4.17.21",
     "ng-otp-input": "^1.8.1",
     "rxjs": "~6.6.0",
     "tslib": "^2.2.0",

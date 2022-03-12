@@ -79,6 +79,7 @@ export class DetailsPage implements OnInit {
   videoURL: string = 'http://www.hazrainfotech.com/api-v1/Resources/Trailer/Pushpa-traile.mp4'
   constructor(
     public router: Router,
+    public navCtrl: NavController,
     public activatedRoute: ActivatedRoute,
     private httpClient: HttpClient,
     public _toastService: ToastService,
@@ -96,7 +97,7 @@ export class DetailsPage implements OnInit {
     this.getItemDetails();
   }
   back() {
-    // this.navCtrl.back();
+    this.navCtrl.back();
   }
   segmentChanged(event) {
 
@@ -135,12 +136,11 @@ export class DetailsPage implements OnInit {
       // if (response.viewItemDetails.length > 0) {
       this.viewItemDetails = response[0];
       if (this.viewItemDetails.viewitemMaterials) {
-        this.viewItemDetails.viewitemMaterials.forEach(element => {
-          if (element.banners) {
+        this.viewItemDetails.viewitemMaterials.forEach((element, index) => {
+          if (element.banners && index === 0) {
             this.bannerUrl = environment.API_ENDPOINT + element.banners.bannerUrl.replaceAll('\\', '/');
           }
-
-          if (element.trailers) {
+          if (element.trailers && index === 0) {
             this.trailerUrl = environment.API_ENDPOINT + element.trailers.trailerUrl.replaceAll('\\', '/');
           }
         });
@@ -161,16 +161,8 @@ export class DetailsPage implements OnInit {
   currentVideo = this.videoItems[this.activeIndex];
   videoPlayerInit(data: any) {
     this.data = data;
-    this.data.getDefaultMedia().subscriptions.loadedMetadata.subscribe(this.initVdo.bind(this));
-    this.data.getDefaultMedia().subscriptions.ended.subscribe(this.nextVideo.bind(this));
   }
-  nextVideo() {
-    this.activeIndex++;
-    if (this.activeIndex === this.videoItems.length) {
-      this.activeIndex = 0;
-    }
-    this.currentVideo = this.videoItems[this.activeIndex];
-  }
+
   initVdo() {
     this.data.play();
   }

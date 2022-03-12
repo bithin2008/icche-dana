@@ -9,6 +9,7 @@ import { LoadingService } from '../../service/loading-service';
 import { ToastModalComponent } from '../toast-modal/toast-modal.component';
 import { environment } from '../../../environments/environment';
 import { AlertController } from '@ionic/angular';
+import * as _ from 'lodash';
 @Component({
   selector: 'app-home',
   templateUrl: './home.page.html',
@@ -84,25 +85,38 @@ export class HomePage implements OnInit {
   getCategoryWisePoster() {
     let url = "CategoryWisePoster";
     this._commonService.get(url).subscribe((response) => {
-      this.frontPoster = [];
+      var frontPoster = [];
       response.categoryWisePoster.forEach(element => {
         if (element.details) {
-          if (element.details.posterDetails) {
-            var obj: any = {};
-            obj.categoryId = element.details.categoryId;
-            obj.categoryName = element.details.categoryName;
-            obj.posters = [];
-            element.details.posterDetails.forEach(item => {
-              item.viewItemId = element.details.viewItemId;
-              item.subCategoryId = element.details.subCategoryId
+          if (element.details) {
+            element.details.forEach((itm, index) => {
+              var obj: any = {};
+              obj.categoryId = itm.categoryId;
+              obj.categoryName = itm.categoryName;
+              itm.posterDetails.forEach(item => {
+                obj.viewItemId = itm.viewItemId;
+                obj.subCategoryId = itm.subCategoryId
 
-              item.categoryPriority = element.details.categoryPriority;
-              item.subCategoryName = element.details.subCategoryName;
-              item.subCategoryPriority = element.details.subCategoryPriority;
-              item.url = environment.API_ENDPOINT + item.posterURL.replaceAll('\\', '/');
-              obj.posters.push(item);
+                obj.categoryPriority = itm.categoryPriority;
+                obj.subCategoryName = itm.subCategoryName;
+                obj.subCategoryPriority = itm.subCategoryPriority;
+                obj.url = environment.API_ENDPOINT + item.posterURL.replaceAll('\\', '/');
+                obj.poster = item;
+              });
+              frontPoster.push(obj);
+
+              this.frontPoster = _.chain(frontPoster)
+                .groupBy('categoryName').map(function (value, key) {
+                  return {
+                    category: key,
+                    posters: value
+                  }
+                })
+                .value()
             });
-            this.frontPoster.push(obj);
+
+
+
             console.log('this.frontPoster', this.frontPoster)
           }
         }
