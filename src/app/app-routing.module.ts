@@ -62,7 +62,11 @@ const routes: Routes = [
   {
     path: 'login-otp',
     loadChildren: () => import('./pages/login-otp/login-otp.module').then(m => m.LoginOtpPageModule)
+  },  {
+    path: 'subscribe',
+    loadChildren: () => import('./subscribe/subscribe.module').then( m => m.SubscribePageModule)
   }
+
 ];
 @NgModule({
   imports: [

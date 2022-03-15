@@ -1,0 +1,50 @@
+ 
+ list-item-header{
+    justify-content: center;
+}
+ion-label{
+    text-align: center;
+}
+ion-item ion-label div{
+    padding: 10px 10px;
+    background: #000;
+    color: #fff;
+    font-size: 25px;
+    font-weight: 500;
+    margin-bottom: 20px; 
+}
+ion-item ion-label{
+    background: #f00;
+    margin-right: 15px;
+    border-radius: 20px;
+}
+ion-content{
+    background:#000;
+}
+ion-label h1{
+color: #FFF;
+font-size: 25px;
+font-weight: 500;
+}
+ion-label p{
+    color: #FFF;
+    font-size: 16px;
+    font-weight: 300;
+}
+button {
+    padding:10px;
+}
+ion-button {
+    --background: transparent;
+    border: 1px solid #000;
+    font-size: 15px;
+    color: #000;
+    margin-bottom: 25px;
+    border-radius: 20px;
+    margin-top: 20px;
+}
+.item-inner{
+    border:0px!important;
+    border-color:white;
+    border-width: 0px!important;
+}
